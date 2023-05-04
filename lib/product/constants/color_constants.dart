@@ -6,7 +6,7 @@ class ColorConstants{
   //splash + login + otp + home
   static const Color white = Colors.white;
   static const Color black = Colors.black;
-  static const Color mountainMeadow = Color(0xFF1CC162);
+  static const Color mountainMeadow = Color(0xFF20C060);
   static const Color frost = Color(0xFFF2F9EB);
   static const Color whiteApprox = Color(0xFFFDFDFD);
   static const Color gallery = Color(0xFFEFEFEF);

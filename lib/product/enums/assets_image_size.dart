@@ -1,7 +1,7 @@
 enum AssetsImageSize {
-  small(100),
-  medium(200),
-  large(400),
+  small(50),
+  medium(100),
+  large(200),
   ;
   final double value;
 

@@ -5,8 +5,6 @@ import 'package:grocerydelivery/features/help/help_screen.dart';
 import 'package:grocerydelivery/features/home/home_screen.dart';
 import 'package:grocerydelivery/features/offer/offer_screen.dart';
 import 'package:grocerydelivery/features/profile/profile_screen.dart';
-
-import '../constants/color_constants.dart';
 import 'nav_provider.dart';
 
 class BottomNavBar extends ConsumerStatefulWidget {
@@ -37,7 +35,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
         height: 100,
         child: Column(
           children: [
-            Spacer(
+            const Spacer(
               flex: 1,
             ),
             Container(
@@ -61,7 +59,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                 ],
               ),
             ),
-            Spacer(
+            const Spacer(
               flex: 1,
             )
           ],
