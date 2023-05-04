@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:grocerydelivery/product/app_states/bottom_navigation_bar.dart';
 import 'package:grocerydelivery/product/theme/light_theme.dart';
 
 
@@ -27,12 +28,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       debugShowCheckedModeBanner: false,
        theme: LightTheme.lightTheme,
-        home: Scaffold(
-          body: Center(
-            child: Text('Hello World'),
-          ),
-        )
-
+        home: const BottomNavBar()
     );
   }
 }
