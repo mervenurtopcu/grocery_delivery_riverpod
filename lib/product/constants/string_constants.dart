@@ -5,13 +5,14 @@ class StringConstants {
   const StringConstants._();
 
 
-  static const String discountTitle1 ="Get up to 20% Discount";
-  static const String discountDescription1 ="Order Any food from the App and get discount";
+  static const String discountTitle1 ="Get up to \n20% Discount";
+  static const String discountDescription1 ="Order Any food from the \nApp and get discount";
 
-  static const String discountTitle2 ="Get up to 50% Discount";
-  static const String discountDescription2 ="Order Any food from the App and get discount";
+  static const String discountTitle2 ="Get up to \n50% Discount";
+  static const String discountDescription2 ="Order Any food from the \nApp and get discount";
 
   static const String homeCaptionsCategories="Categories";
+  static const String homeCaptionsSpecialDeals="Special Deals";
   static const String homeSeeAll="See All";
 
   static const String catVegetables="Vegetables";

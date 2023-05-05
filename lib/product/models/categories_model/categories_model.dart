@@ -12,8 +12,6 @@ class CategoryModel {
 final List<String> categoryNames = [
   StringConstants.catVegetables,
   StringConstants.catFruits,
-  StringConstants.catMeat,
-  StringConstants.catSeafood,
   StringConstants.catDrinks,
   StringConstants.catBakery,
   StringConstants.catSnacks,
@@ -26,8 +24,6 @@ final List<String> categoryNames = [
 final List<String> categoryImage = [
   CategoriesImages.vegetables.toPng,
   CategoriesImages.fruits.toPng,
-  CategoriesImages.meat.toPng,
-  CategoriesImages.seafood.toPng,
   CategoriesImages.drinks.toPng,
   CategoriesImages.bakery.toPng,
   CategoriesImages.snacks.toPng,

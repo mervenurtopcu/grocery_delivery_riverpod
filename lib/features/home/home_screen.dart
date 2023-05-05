@@ -1,13 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:grocerydelivery/product/constants/color_constants.dart';
-import 'package:grocerydelivery/product/enums/assets_image_size.dart';
-import 'package:grocerydelivery/product/models/categories_model/categories_model.dart';
-import 'package:grocerydelivery/product/models/discount_model/discount_model.dart';
-import 'package:grocerydelivery/product/widget/appbar_search_textfield.dart';
+import 'package:flutter/material.dart';
+import 'package:grocerydelivery/product/models/product_model/product_model.dart';
 
+import '../../product/constants/color_constants.dart';
 import '../../product/constants/string_constants.dart';
+import '../../product/enums/assets_image_size.dart';
 import '../../product/enums/png_constants.dart';
+import '../../product/models/categories_model/categories_model.dart';
+import '../../product/models/discount_model/discount_model.dart';
+import '../../product/widget/appbar_search_textfield.dart';
+import '../../product/widget/product_container.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({
@@ -15,10 +17,10 @@ class HomeScreen extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  ConsumerState createState() => _HomeScreenState();
+  ConsumerState createState() => _HomeViewState();
 }
 
-class _HomeScreenState extends ConsumerState<HomeScreen> {
+class _HomeViewState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,75 +34,122 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ],
         bottom: _appbarBottomWidget(context),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Padding(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ListView.builder(
-                itemCount: discountList.length,
-                itemBuilder: (context, index) {
-                  final list = discountList[index];
-                  return _DiscountCard(list: list);
-                },
-                scrollDirection: Axis.horizontal,
+              child: SizedBox(
+                height: MediaQuery.of(context).size.width * 0.3,
+                //width: 100,
+                child: const _DiscountListview(),
               ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Padding(
+            Padding(
               padding: const EdgeInsets.only(left: 10.0, right: 10.0),
               child: Row(
                 children: [
                   Expanded(
-                      child: Text(
-                    StringConstants.homeCaptionsCategories,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w500,
-                        ),
-                  )),
-                  _seeAllTextButton(),
+                    child: Text(
+                      StringConstants.homeCaptionsCategories,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: ColorConstants.black,
+                          ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(StringConstants.homeSeeAll,
+                        style: TextStyle(color: ColorConstants.forestGreen)),
+                  ),
                 ],
               ),
             ),
-          ),
-          Expanded(child: ListView.builder(
-            itemCount: categoryList.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              final list = categoryList[index];
-              return Column(
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: ListView.separated(
+                separatorBuilder: (context, index) => const SizedBox(
+                  width: 15.0,
+                ),
+                itemCount: categoryList.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  final list = categoryList[index];
+                  return Column(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          width: 75,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: ColorConstants.offGreen,
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.values[5],
+                            child: Image.asset(
+                              list.categoryImage,
+                              width: AssetsImageSize.small.value,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(child: Text(list.categoryName)),
+                    ],
+                  );
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+              child: Row(
                 children: [
-                  Container(
-                    height: 80,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: ColorConstants.offGreen,
-                    ),
-                    child: Image.asset(
-                      list.categoryImage,
-                      width: AssetsImageSize.small.value,
+                  Expanded(
+                    child: Text(
+                      StringConstants.homeCaptionsSpecialDeals,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: ColorConstants.black,
+                          ),
                     ),
                   ),
-                  Text(list.categoryName),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(StringConstants.homeSeeAll,
+                        style: TextStyle(color: ColorConstants.forestGreen)),
+                  ),
                 ],
-              );
-            },
-          ))
-        ],
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width * 0.9,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  color: ColorConstants.offGreen,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 30,bottom: 20,
+                  ),
+                  child: GridView.builder(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 5.0,
+                        mainAxisSpacing: 25.0,
+                      ),
+                      itemCount: productList.length,
+                      itemBuilder: (_, index) {
+                        final list = productList[index];
+                        return ProductContainer(list: list);
+                      }),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
-  }
-
-  TextButton _seeAllTextButton() {
-    return TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      StringConstants.homeSeeAll,
-                      style: TextStyle(color: ColorConstants.mountainMeadow),
-                    ));
   }
 
   PreferredSize _appbarBottomWidget(BuildContext context) {
@@ -119,6 +168,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 }
 
+
+
+class _DiscountListview extends StatelessWidget {
+  const _DiscountListview({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      separatorBuilder: (context, index) => const SizedBox(
+        width: 10,
+      ),
+      itemCount: discountList.length,
+      itemBuilder: (context, index) {
+        final list = discountList[index];
+        return SizedBox(
+            width: MediaQuery.of(context).size.height * 0.4,
+            child:
+                FittedBox(fit: BoxFit.fill, child: _DiscountCard(list: list)));
+      },
+      scrollDirection: Axis.horizontal,
+    );
+  }
+}
+
 class _DiscountCard extends StatelessWidget {
   const _DiscountCard({
     super.key,
@@ -132,16 +207,36 @@ class _DiscountCard extends StatelessWidget {
     return Card(
         color: list.color,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset(
-              list.url,
-              width: AssetsImageSize.small.value,
+            SizedBox(
+              width: 100,
+              height: 100,
+              child: Image.asset(
+                list.url,
+                width: AssetsImageSize.small.value,
+              ),
             ),
-            Column(
-              children: [
-                Text(list.discountTitle),
-                Text(list.discountDescription),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(list.discountTitle,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: ColorConstants.mountainMeadow)),
+                  Text(list.discountDescription,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                      style: const TextStyle(color: ColorConstants.boulder)),
+                ],
+              ),
             ),
           ],
         ));

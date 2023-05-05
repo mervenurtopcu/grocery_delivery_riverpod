@@ -7,7 +7,7 @@ enum CategoriesImages {
   seafood('ic_seafood'),
   milkEgg('ic_milk_egg'),
   bakery('ic_bakery'),
-  drinks('ic_drinks'),
+  drinks('ic_drink'),
   frozen('ic_frozen'),
   cleaning('ic_cleaning'),
   oil('ic_oils'),
