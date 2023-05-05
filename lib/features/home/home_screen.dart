@@ -8,6 +8,7 @@ import '../../product/enums/assets_image_size.dart';
 import '../../product/enums/png_constants.dart';
 import '../../product/models/categories_model/categories_model.dart';
 import '../../product/models/discount_model/discount_model.dart';
+import '../../product/models/product_model/discountProductList.dart';
 import '../../product/widget/appbar_search_textfield.dart';
 import '../../product/widget/product_container.dart';
 
@@ -138,9 +139,9 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
                         crossAxisSpacing: 5.0,
                         mainAxisSpacing: 25.0,
                       ),
-                      itemCount: productList.length,
+                      itemCount: discountProductList.length,
                       itemBuilder: (_, index) {
-                        final list = productList[index];
+                        final list = discountProductList[index];
                         return ProductContainer(list: list);
                       }),
                 ),
