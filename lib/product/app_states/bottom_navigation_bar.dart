@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:grocerydelivery/features/category/category_screen.dart';
-import 'package:grocerydelivery/features/help/help_screen.dart';
+import 'package:grocerydelivery/features/discount/discount_screen.dart';
+import 'package:grocerydelivery/features/favorites/favorite_screen.dart';
 import 'package:grocerydelivery/features/home/home_screen.dart';
-import 'package:grocerydelivery/features/offer/offer_screen.dart';
 import 'package:grocerydelivery/features/profile/profile_screen.dart';
 import 'nav_provider.dart';
 
@@ -20,8 +20,8 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
   static final List<Widget> _widgetOptions = <Widget>[
     const HomeScreen(),
     const CategoryScreen(),
-    const HelpScreen(),
-    const OfferScreen(),
+    const FavoriteScreen(),
+    const DiscountScreen(),
     const ProfileScreen()
   ];
   @override
@@ -51,9 +51,9 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                   BottomNavigationBarItem(
                     icon: Icon(Icons.category), label: 'Category',),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.help), label: 'Help'),
+                      icon: Icon(Icons.favorite_outlined), label: 'Favorite'),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.local_offer), label: 'Offer'),
+                      icon: Icon(Icons.local_offer), label: 'Discount'),
                   BottomNavigationBarItem(
                       icon: Icon(Icons.person), label: 'Profile'),
                 ],

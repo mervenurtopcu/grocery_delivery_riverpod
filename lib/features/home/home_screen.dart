@@ -142,7 +142,10 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
                       itemCount: discountProductList.length,
                       itemBuilder: (_, index) {
                         final list = discountProductList[index];
-                        return ProductContainer(list: list);
+                        return Container(decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15.0),
+                          color: ColorConstants.offGreen,
+                        ),child: ProductContainer(list: list));
                       }),
                 ),
               ),
