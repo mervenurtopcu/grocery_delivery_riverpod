@@ -4,12 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocerydelivery/product/app_states/bottom_navigation_bar.dart';
 import 'package:grocerydelivery/product/theme/light_theme.dart';
 
-
 import 'firebase_options.dart';
-
-import 'package:flutter/foundation.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,11 +20,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
-      debugShowCheckedModeBanner: false,
-       theme: LightTheme.lightTheme,
-        home: const BottomNavBar()
-    );
+        title: 'Material App',
+        debugShowCheckedModeBanner: false,
+        theme: LightTheme.lightTheme,
+        home: const BottomNavBar());
   }
 }
-

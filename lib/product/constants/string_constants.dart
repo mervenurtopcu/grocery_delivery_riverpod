@@ -15,6 +15,10 @@ class StringConstants {
   static const String homeCaptionsSpecialDeals="Special Deals";
   static const String homeSeeAll="See All";
 
+  static const String favAddProduct="Add your first product to your favorites!";
+  static const String favAddProductDescription="There are no products in your favourites. Start shopping now to add products to your favourites.";
+  static const String favAddProductButton="Start Shopping";
+
   static const String catVegetables="Vegetables";
   static const String catFruits="Fruits";
   static const String catMeat="Meat";
@@ -27,5 +31,7 @@ class StringConstants {
   static const String catOils="Oils";
   static const String catPasta="Pastas";
   static const String catCleaning="Cleaning";
+
+
 
 }
