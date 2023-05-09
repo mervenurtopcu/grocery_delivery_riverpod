@@ -50,16 +50,41 @@ final List<ProductModel> products = [
 
 
 //kategoriye göre ürün listesi
-final List<ProductModel> catVegetablesList = products.where((element) => element.categoryId == 0).toList();
-final List<ProductModel> catFruitsList = products.where((element) => element.categoryId == 1).toList();
-final List<ProductModel> catDrinksList = products.where((element) => element.categoryId == 2).toList();
-final List<ProductModel> catBakeryList = products.where((element) => element.categoryId == 3).toList();
-final List<ProductModel> catSnacksList = products.where((element) => element.categoryId == 4).toList();
-final List<ProductModel> catMilkEggList = products.where((element) => element.categoryId == 5).toList();
-final List<ProductModel> catFrozenList = products.where((element) => element.categoryId == 6).toList();
-final List<ProductModel> catOilsList = products.where((element) => element.categoryId == 7).toList();
-final List<ProductModel> catPastaList = products.where((element) => element.categoryId == 8).toList();
-final List<ProductModel> catCleaningList = products.where((element) => element.categoryId == 9).toList();
+List<ProductModel>? productLists(int categoryId){
+   switch (categoryId){
+     case 0:
+       return products.where((element) => element.categoryId == 0).toList();
+      case 1:
+        return products.where((element) => element.categoryId == 1).toList();
+      case 2:
+        return products.where((element) => element.categoryId == 2).toList();
+      case 3:
+        return products.where((element) => element.categoryId == 3).toList();
+      case 4:
+        return products.where((element) => element.categoryId == 4).toList();
+      case 5:
+        return products.where((element) => element.categoryId == 5).toList();
+      case 6:
+        return products.where((element) => element.categoryId == 6).toList();
+      case 7:
+        return products.where((element) => element.categoryId == 7).toList();
+      case 8:
+        return products.where((element) => element.categoryId == 8).toList();
+      case 9:
+        return products.where((element) => element.categoryId == 9).toList();
+   }
+  // final List<ProductModel> catVegetablesList = products.where((element) => element.categoryId == 0).toList();
+  // final List<ProductModel> catFruitsList = products.where((element) => element.categoryId == 1).toList();
+  // final List<ProductModel> catDrinksList = products.where((element) => element.categoryId == 2).toList();
+  // final List<ProductModel> catBakeryList = products.where((element) => element.categoryId == 3).toList();
+  // final List<ProductModel> catSnacksList = products.where((element) => element.categoryId == 4).toList();
+  // final List<ProductModel> catMilkEggList = products.where((element) => element.categoryId == 5).toList();
+  // final List<ProductModel> catFrozenList = products.where((element) => element.categoryId == 6).toList();
+  // final List<ProductModel> catOilsList = products.where((element) => element.categoryId == 7).toList();
+  // final List<ProductModel> catPastaList = products.where((element) => element.categoryId == 8).toList();
+  // final List<ProductModel> catCleaningList = products.where((element) => element.categoryId == 9).toList();
+
+}
 
 
 final List<String> categoryNames = [

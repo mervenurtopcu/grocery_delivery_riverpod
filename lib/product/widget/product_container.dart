@@ -65,6 +65,9 @@ class ProductContainer extends ConsumerWidget {
                       child: Image.asset(
                         list!.productImage,
                         width: AssetsImageSize.large.value,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(Icons.error);
+                        },
                       ),
                     ),
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:grocerydelivery/features/products/product_list_screen.dart';
 import 'package:grocerydelivery/product/constants/string_constants.dart';
 import 'package:grocerydelivery/product/widget/category_card.dart';
 
@@ -48,7 +49,10 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
             final list = categoryList[index];
             return Column(
               children: [
-                CategoryCard(containerHeight: 100,list: list, imageWidth: AssetsImageSize.large.value, containerWidth: 100, fit: BoxFit.fill),
+                InkWell(onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductListScreen( categoryId: list.categoryId,)));
+                },
+                    child: CategoryCard(containerHeight: 100,list: list, imageWidth: AssetsImageSize.large.value, containerWidth: 100, fit: BoxFit.fill)),
                 Expanded(child: Text(list.categoryName)),
               ],
             );
