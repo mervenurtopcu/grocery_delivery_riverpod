@@ -19,6 +19,8 @@ class StringConstants {
   static const String favAddProductDescription="There are no products in your favourites. Start shopping now to add products to your favourites.";
   static const String favAddProductButton="Start Shopping";
 
+  static const String catAppBar = "Categories";
+
   static const String catVegetables="Vegetables";
   static const String catFruits="Fruits";
   static const String catMeat="Meat";

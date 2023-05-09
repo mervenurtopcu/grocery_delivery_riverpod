@@ -1,14 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:grocerydelivery/product/models/product_model/product_model.dart';
+
+
+import 'package:grocerydelivery/product/widget/category_card.dart';
 
 import '../../product/constants/color_constants.dart';
 import '../../product/constants/string_constants.dart';
 import '../../product/enums/assets_image_size.dart';
 import '../../product/enums/png_constants.dart';
-import '../../product/models/categories_model/categories_model.dart';
-import '../../product/models/discount_model/discount_model.dart';
-import '../../product/models/product_model/discountProductList.dart';
+
+import '../../product/model/products/product_list.dart';
+
 import '../../product/widget/appbar_search_textfield.dart';
 import '../../product/widget/product_container.dart';
 
@@ -79,22 +81,7 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
                   final list = categoryList[index];
                   return Column(
                     children: [
-                      Expanded(
-                        child: Container(
-                          width: 75,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: ColorConstants.offGreen,
-                          ),
-                          child: FittedBox(
-                            fit: BoxFit.values[5],
-                            child: Image.asset(
-                              list.categoryImage,
-                              width: AssetsImageSize.small.value,
-                            ),
-                          ),
-                        ),
-                      ),
+                      Expanded(child: CategoryCard(list: list, imageWidth:  AssetsImageSize.small.value, containerWidth: 75, fit: BoxFit.values[5])),
                       Expanded(child: Text(list.categoryName)),
                     ],
                   );
@@ -185,26 +172,30 @@ class _DiscountListview extends StatelessWidget {
       separatorBuilder: (context, index) => const SizedBox(
         width: 10,
       ),
-      itemCount: discountList.length,
+      itemCount: discountLists.length,
       itemBuilder: (context, index) {
-        final list = discountList[index];
+        final list = discountLists[index];
         return SizedBox(
             width: MediaQuery.of(context).size.height * 0.4,
             child:
-                FittedBox(fit: BoxFit.fill, child: _DiscountCard(list: list)));
+                FittedBox(fit: BoxFit.fill, child: DiscountCard(list: list, width: 100,height: 100,imageWidth: AssetsImageSize.small.value,)));
       },
       scrollDirection: Axis.horizontal,
     );
   }
 }
 
-class _DiscountCard extends StatelessWidget {
-  const _DiscountCard({
+class DiscountCard extends StatelessWidget {
+  const DiscountCard({
     super.key,
-    required this.list,
+    required this.list, required this.height, required this.width, required this.imageWidth,
   });
 
   final DiscountModel list;
+  final double height ;
+  final double width ;
+  final double imageWidth;
+
 
   @override
   Widget build(BuildContext context) {
@@ -214,11 +205,11 @@ class _DiscountCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
-              width: 100,
-              height: 100,
+              width: width,
+              height: height,
               child: Image.asset(
                 list.url,
-                width: AssetsImageSize.small.value,
+                width: imageWidth,
               ),
             ),
             Padding(

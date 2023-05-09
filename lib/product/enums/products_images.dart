@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 enum ProductImages {
   bananas('ic_bananas'),
+  apple('ic_apple'),
+  orange('ic_oranges'),
+  strawberries('ic_strawberries'),
+  watermelon('ic_watermelon'),
   bread('ic_bread'),
   coffee('ic_coffee'),
   tide('ic_tide'),

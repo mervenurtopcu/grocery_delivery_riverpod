@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../features/home/home_provider.dart';
 import '../constants/color_constants.dart';
 import '../enums/assets_image_size.dart';
-import '../models/product_model/product_model.dart';
+import '../model/products/product_list.dart';
+
+
 
 class ProductContainer extends ConsumerWidget {
   const ProductContainer( {
@@ -13,7 +15,7 @@ class ProductContainer extends ConsumerWidget {
 
   });
 
-  final ProductModel list;
+  final ProductModel? list;
 
 
   @override
@@ -45,9 +47,9 @@ class ProductContainer extends ConsumerWidget {
                           .watch(homeScreenProvider)
                           .getSavedList
                           .contains(list)) {
-                        ref.read(homeScreenProvider).addToList(list);
+                        ref.read(homeScreenProvider).addToList(list!);
                       } else {
-                        ref.read(homeScreenProvider).removeFromList(list);
+                        ref.read(homeScreenProvider).removeFromList(list!);
                       }
                     },
                     icon:
@@ -61,7 +63,7 @@ class ProductContainer extends ConsumerWidget {
                   Expanded(
                     child: Center(
                       child: Image.asset(
-                        list.productImage,
+                        list!.productImage,
                         width: AssetsImageSize.large.value,
                       ),
                     ),
@@ -72,7 +74,7 @@ class ProductContainer extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          list.productName,
+                          list!.productName,
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
@@ -82,7 +84,7 @@ class ProductContainer extends ConsumerWidget {
                               ),
                         ),
                         Text(
-                          list.categoryName,
+                          list!.categoryName,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -94,7 +96,7 @@ class ProductContainer extends ConsumerWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              '\$${list.productPrice}',
+                              '\$${list!.productPrice}',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
