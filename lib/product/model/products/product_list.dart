@@ -36,14 +36,14 @@ class ProductModel{
 
 
 final List<ProductModel> products = [
-  ProductModel(0,'Apple', 'AppleApple', '15.99', 3.5, ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 0),
-  ProductModel(1, 'Bananas', 'BananaBanana', '17.99', 4.5, ProductImages.bananas.toPng, 1, categoryNames[1], categoryImage[1], 20),
-  ProductModel(2, 'Bread', 'BreadBread', '5.00', 3.5, ProductImages.bread.toPng, 3, categoryNames[3], categoryImage[3], 0),
-  ProductModel(3, 'Coffee', 'CoffeeCoffee', '49.99', 4.0, ProductImages.coffee.toPng, 2, categoryNames[2], categoryImage[2], 50),
-  ProductModel(4, 'Oranges', 'OrangesOranges', '9.99', 4.0, ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 0),
-  ProductModel(5, 'Strawberries', 'StrawberriesStrawberries', '24.99', 3.5, ProductImages.strawberries.toPng, 1, categoryNames[1], categoryImage[1], 20),
-  ProductModel(6, 'Tide Detergent', 'Tide DetergentTide Detergent', '65.99', 5.0, ProductImages.tide.toPng, 9, categoryNames[9], categoryImage[9], 0),
-  ProductModel(0, 'Watermelon', 'WatermelonWatermelon', '32.00', 4.5, ProductImages.watermelon.toPng, 1, categoryNames[1], categoryImage[1], 20),
+  ProductModel(0,'Apple', StringConstants.productDetail, '15.99', 3.5, ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 0),
+  ProductModel(1, 'Bananas', StringConstants.productDetail, '17.99', 4.5, ProductImages.bananas.toPng, 1, categoryNames[1], categoryImage[1], 20),
+  ProductModel(2, 'Bread',StringConstants.productDetail, '5.00', 3.5, ProductImages.bread.toPng, 3, categoryNames[3], categoryImage[3], 0),
+  ProductModel(3, 'Coffee', StringConstants.productDetail, '49.99', 4.0, ProductImages.coffee.toPng, 2, categoryNames[2], categoryImage[2], 50),
+  ProductModel(4, 'Oranges', StringConstants.productDetail, '9.99', 4.0, ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 0),
+  ProductModel(5, 'Strawberries', StringConstants.productDetail, '24.99', 3.5, ProductImages.strawberries.toPng, 1, categoryNames[1], categoryImage[1], 20),
+  ProductModel(6, 'Tide Detergent', StringConstants.productDetail, '65.99', 5.0, ProductImages.tide.toPng, 9, categoryNames[9], categoryImage[9], 0),
+  ProductModel(0, 'Watermelon', StringConstants.productDetail, '32.00', 4.5, ProductImages.watermelon.toPng, 1, categoryNames[1], categoryImage[1], 20),
 
 ];
 

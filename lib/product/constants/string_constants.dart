@@ -34,6 +34,6 @@ class StringConstants {
   static const String catPasta="Pastas";
   static const String catCleaning="Cleaning";
 
-
+  static const String productDetail= "A product needs to be relevant: the users must have an immediate use for it. A product needs to be functionally able to do what it is supposed to, and do it with a good quality.";
 
 }

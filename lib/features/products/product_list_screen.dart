@@ -21,11 +21,12 @@ class ProductListScreen extends ConsumerStatefulWidget {
 
 class _ProductListScreenState extends ConsumerState<ProductListScreen> {
   List<ProductModel> productList = [];
+  late String categoryName ;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     productList = productLists(widget.categoryId)!;
+    categoryName = categoryNames[widget.categoryId];
   }
 
   @override
@@ -33,7 +34,7 @@ class _ProductListScreenState extends ConsumerState<ProductListScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorConstants.mountainMeadow,
-         title: Text('Product List'),
+         title: Text(categoryName),
         titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
               color: ColorConstants.white,
             ),
