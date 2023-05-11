@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:grocerydelivery/features/products/product_detail_screen_provider.dart';
 import 'package:grocerydelivery/product/model/products/product_list.dart';
 import 'package:grocerydelivery/product/widget/add_button.dart';
-
 import '../../product/constants/color_constants.dart';
 import '../../product/enums/assets_image_size.dart';
 import '../../product/enums/png_constants.dart';
@@ -94,7 +93,9 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                   children: [
                     InkWell(
                       onTap: () {
-                        ref.read(productDetailScreenProvider).incrementCounter();
+                        ref
+                            .read(productDetailScreenProvider)
+                            .incrementCounter();
                       },
                       child: const AddButton(
                         icon: Icons.add,
@@ -105,13 +106,18 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                       child: Text(
-                        ref.watch(productDetailScreenProvider).getCounter.toString(),
+                        ref
+                            .watch(productDetailScreenProvider)
+                            .getCounter
+                            .toString(),
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                     ),
                     InkWell(
                       onTap: () {
-                        ref.read(productDetailScreenProvider).decrementCounter();
+                        ref
+                            .read(productDetailScreenProvider)
+                            .decrementCounter();
                       },
                       child: const AddButton(
                         icon: Icons.remove,
@@ -170,9 +176,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                 ),
               ),
               ElevatedButton.icon(
-                onPressed: () {
-                  //ref.read(productDetailScreenProvider).changeAmount(widget.item?.productPrice as double);
-                },
+                onPressed: () {},
                 icon: const Icon(
                   Icons.shopping_cart,
                   color: ColorConstants.white,

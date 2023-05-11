@@ -36,11 +36,11 @@ class ProductModel{
 
 
 final List<ProductModel> products = [
-  ProductModel(0,'Apple', StringConstants.productDetail, '15.99', 3.5, ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 0),
+  ProductModel(0,'Apple', StringConstants.productDetail, '15.99', 3.5, ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 50),
   ProductModel(1, 'Bananas', StringConstants.productDetail, '17.99', 4.5, ProductImages.bananas.toPng, 1, categoryNames[1], categoryImage[1], 20),
   ProductModel(2, 'Bread',StringConstants.productDetail, '5.00', 3.5, ProductImages.bread.toPng, 3, categoryNames[3], categoryImage[3], 0),
   ProductModel(3, 'Coffee', StringConstants.productDetail, '49.99', 4.0, ProductImages.coffee.toPng, 2, categoryNames[2], categoryImage[2], 50),
-  ProductModel(4, 'Oranges', StringConstants.productDetail, '9.99', 4.0, ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 0),
+  ProductModel(4, 'Oranges', StringConstants.productDetail, '9.99', 4.0, ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 50),
   ProductModel(5, 'Strawberries', StringConstants.productDetail, '24.99', 3.5, ProductImages.strawberries.toPng, 1, categoryNames[1], categoryImage[1], 20),
   ProductModel(6, 'Tide Detergent', StringConstants.productDetail, '65.99', 5.0, ProductImages.tide.toPng, 9, categoryNames[9], categoryImage[9], 0),
   ProductModel(0, 'Watermelon', StringConstants.productDetail, '32.00', 4.5, ProductImages.watermelon.toPng, 1, categoryNames[1], categoryImage[1], 20),
@@ -73,19 +73,11 @@ List<ProductModel>? productLists(int categoryId){
       case 9:
         return products.where((element) => element.categoryId == 9).toList();
    }
-  // final List<ProductModel> catVegetablesList = products.where((element) => element.categoryId == 0).toList();
-  // final List<ProductModel> catFruitsList = products.where((element) => element.categoryId == 1).toList();
-  // final List<ProductModel> catDrinksList = products.where((element) => element.categoryId == 2).toList();
-  // final List<ProductModel> catBakeryList = products.where((element) => element.categoryId == 3).toList();
-  // final List<ProductModel> catSnacksList = products.where((element) => element.categoryId == 4).toList();
-  // final List<ProductModel> catMilkEggList = products.where((element) => element.categoryId == 5).toList();
-  // final List<ProductModel> catFrozenList = products.where((element) => element.categoryId == 6).toList();
-  // final List<ProductModel> catOilsList = products.where((element) => element.categoryId == 7).toList();
-  // final List<ProductModel> catPastaList = products.where((element) => element.categoryId == 8).toList();
-  // final List<ProductModel> catCleaningList = products.where((element) => element.categoryId == 9).toList();
+
 
 }
-
+ final List<ProductModel> twentyDiscountList = products.where((element) => element.discountRate == 20).toList();
+  final List<ProductModel> fiftyDiscountList = products.where((element) => element.discountRate == 50).toList();
 
 final List<String> categoryNames = [
   StringConstants.catVegetables,
@@ -142,7 +134,7 @@ class DiscountModel {
 
 }
 
-final discountLists =List<DiscountModel>.generate(10, (index){
+final discountLists =List<DiscountModel>.generate(2, (index){
   if(index%2==0){
     return DiscountModel(index, StringConstants.discountTitle1, StringConstants.discountDescription1, PngConstants.vegetables.toPng, ColorConstants.offGreen);
   }else {
@@ -152,8 +144,6 @@ final discountLists =List<DiscountModel>.generate(10, (index){
 });
 
 
-List<ProductModel> twentyDiscountList = [];
-List<ProductModel> fiftyDiscountList = [];
 
 List<ProductModel> getDiscountList() {
   for (int i = 0; i < products.length; i++) {

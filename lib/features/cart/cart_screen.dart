@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DiscountScreen extends ConsumerStatefulWidget {
-  const DiscountScreen({
+class CartScreen extends ConsumerStatefulWidget {
+  const CartScreen({
     Key? key,
   }) : super(key: key);
 
@@ -10,7 +10,7 @@ class DiscountScreen extends ConsumerStatefulWidget {
   ConsumerState createState() => _DiscountScreenState();
 }
 
-class _DiscountScreenState extends ConsumerState<DiscountScreen> {
+class _DiscountScreenState extends ConsumerState<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Container();

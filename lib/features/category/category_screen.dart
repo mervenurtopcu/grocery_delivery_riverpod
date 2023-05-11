@@ -26,33 +26,44 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
       appBar: AppBar(
         title: const Text(StringConstants.catAppBar),
         titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
-          color: ColorConstants.white,
-        ),
+              color: ColorConstants.white,
+            ),
         actions: [
           Image.asset(
             PngConstants.avatar.toPng,
             width: AssetsImageSize.small.value,
           ),
         ],
-        bottom:  _appbarBottomWidget(context),
+        bottom: _appbarBottomWidget(context),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 20),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 10.0,
-        mainAxisSpacing: 10.0,
-
-        ),itemCount: categoryList.length,
+            crossAxisCount: 3,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10.0,
+          ),
+          itemCount: categoryList.length,
           itemBuilder: (BuildContext context, int index) {
             final list = categoryList[index];
             return Column(
               children: [
-                InkWell(onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductListScreen( categoryId: list.categoryId,)));
-                },
-                    child: CategoryCard(containerHeight: 100,list: list, imageWidth: AssetsImageSize.large.value, containerWidth: 100, fit: BoxFit.fill)),
+                InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductListScreen(
+                                    categoryId: list.categoryId,
+                                  )));
+                    },
+                    child: CategoryCard(
+                        containerHeight: 100,
+                        list: list,
+                        imageWidth: AssetsImageSize.large.value,
+                        containerWidth: 100,
+                        fit: BoxFit.fill)),
                 Expanded(child: Text(list.categoryName)),
               ],
             );
@@ -61,6 +72,7 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
       ),
     );
   }
+
   PreferredSize _appbarBottomWidget(BuildContext context) {
     return PreferredSize(
       preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
