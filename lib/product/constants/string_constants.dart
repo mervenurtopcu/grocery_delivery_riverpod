@@ -27,6 +27,13 @@ class StringConstants {
 
   static const String productDetailTitle = "Product Details";
 
+  static const String favoriteAppbar = "Your Favorites";
+
+  static const String cartAppBar = "My Cart";
+
+  static const String cartEmpty = "Your Cart is Empty";
+  static const String cartEmptyDescription = "Looks like you haven't added anything to your cart yet. Let's change that!";
+
   static const String catAppBar = "Categories";
 
   static const String catVegetables = "Vegetables";

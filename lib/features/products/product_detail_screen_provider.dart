@@ -24,6 +24,6 @@ class ProductDetailScreenProvider extends ChangeNotifier {
 }
 
 final productDetailScreenProvider =
-    ChangeNotifierProvider((ref) => ProductDetailScreenProvider(
+    ChangeNotifierProvider.autoDispose((ref) => ProductDetailScreenProvider(
           counter: 1,
         ));

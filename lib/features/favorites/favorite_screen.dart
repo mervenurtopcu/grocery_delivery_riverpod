@@ -24,7 +24,7 @@ class _HelpScreenState extends ConsumerState<FavoriteScreen> {
     final savedList = ref.watch(homeScreenProvider).getSavedList;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Favorites'),
+        title: const Text(StringConstants.favoriteAppbar),
         titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
               color: ColorConstants.white,
             ),

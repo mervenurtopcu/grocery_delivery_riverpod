@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../product/model/all_models.dart';
-import '../../product/model/product_list.dart';
+import '../../product/model/index.dart';
 
 
 class HomeScreenProvider extends ChangeNotifier {
-
-  final List<ProductModel?> _productList = discountProductList;
-  List<ProductModel?> get getProducts => _productList;
 
   final List<ProductModel> _savedList = [];
   List<ProductModel> get getSavedList => _savedList;

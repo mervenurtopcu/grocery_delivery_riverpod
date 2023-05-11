@@ -1,5 +1,6 @@
 enum LottieItems {
   shoppingNow,
+  emptyCart,
 }
 
 extension LottieExtension on LottieItems {
@@ -7,6 +8,8 @@ extension LottieExtension on LottieItems {
     switch (this) {
       case LottieItems.shoppingNow:
         return 'lottie_shopping_now';
+      case LottieItems.emptyCart:
+        return 'lottie_empty_cart';
     }
   }
 

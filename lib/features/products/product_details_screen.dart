@@ -8,6 +8,7 @@ import '../../product/widget/index.dart';
 import '../../product/model/index.dart';
 import '../../product/constants/index.dart';
 import '../../product/enums/index.dart';
+import '../cart/cart_screen_provider.dart';
 
 class ProductDetails extends ConsumerStatefulWidget {
   const ProductDetails({
@@ -148,16 +149,18 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
             ),
           ),
         ),
-        bottomNavigationBar: _BottomNavBar(widget: widget));
+        bottomNavigationBar: _BottomNavBar(widget: widget,ref: ref,));
   }
 }
 
 class _BottomNavBar extends StatelessWidget {
-  const _BottomNavBar({
+   _BottomNavBar({
     required this.widget,
+    required this.ref,
   });
 
   final ProductDetails widget;
+  WidgetRef ref;
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +191,11 @@ class _BottomNavBar extends StatelessWidget {
             ),
           ),
           ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              ref.read(cartScreenProvider).addToList(widget.item, ref
+                  .watch(productDetailScreenProvider)
+                  .getCounter);
+            },
             icon: const Icon(
               Icons.shopping_cart,
               color: ColorConstants.white,
