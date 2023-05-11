@@ -4,11 +4,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:grocerydelivery/features/products/product_detail_screen_provider.dart';
-import 'package:grocerydelivery/product/model/products/product_list.dart';
-import 'package:grocerydelivery/product/widget/add_button.dart';
-import '../../product/constants/color_constants.dart';
-import '../../product/enums/assets_image_size.dart';
-import '../../product/enums/png_constants.dart';
+import '../../product/widget/index.dart';
+import '../../product/model/index.dart';
+import '../../product/constants/index.dart';
+import '../../product/enums/index.dart';
 
 class ProductDetails extends ConsumerStatefulWidget {
   const ProductDetails({
@@ -52,7 +51,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                   child: Column(
                     children: [
                       Text(
-                        widget.item!.productName ?? "",
+                        widget.item!.productName ,
                         style:
                             Theme.of(context).textTheme.displaySmall?.copyWith(
                                   color: ColorConstants.black,
@@ -60,7 +59,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                                 ),
                       ),
                       Text(
-                        widget.item!.categoryName ?? "",
+                        widget.item!.categoryName,
                         style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                               color: ColorConstants.black,
                               fontWeight: FontWeight.w500,
@@ -131,15 +130,15 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
                 Text(
-                  'Product Description',
+                  StringConstants.productDetailTitle,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: ColorConstants.black, fontWeight: FontWeight.w500),
                 ),
                 ExpandableText(
                   widget.item!.productDescription,
-                  expandText: 'Show More',
+                  expandText: StringConstants.expandableShowMore,
                   maxLines: 2,
-                  collapseText: 'Show less',
+                  collapseText: StringConstants.expandableShowLess,
                   linkColor: ColorConstants.mountainMeadow,
                   style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                         color: ColorConstants.doveGray,
@@ -149,56 +148,69 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
             ),
           ),
         ),
-        bottomNavigationBar: Container(
-          height: MediaQuery.of(context).size.height * 0.1,
-          color: Colors.transparent,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Price',
-                      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: ColorConstants.doveGray,
-                          ),
-                    ),
-                    Text(
-                      '\$${widget.item!.productPrice}',
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                          color: ColorConstants.black,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
+        bottomNavigationBar: _BottomNavBar(widget: widget));
+  }
+}
+
+class _BottomNavBar extends StatelessWidget {
+  const _BottomNavBar({
+    required this.widget,
+  });
+
+  final ProductDetails widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.1,
+      color: Colors.transparent,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Price',
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: ColorConstants.doveGray,
+                      ),
                 ),
-              ),
-              ElevatedButton.icon(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.shopping_cart,
-                  color: ColorConstants.white,
+                Text(
+                  '\$${widget.item!.productPrice}',
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: ColorConstants.black,
+                      fontWeight: FontWeight.w500),
                 ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorConstants.mountainMeadow,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                ),
-                label: Text(
-                  'Add to Cart',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyLarge!
-                      .copyWith(color: ColorConstants.white),
-                ),
-              )
-            ],
+              ],
+            ),
           ),
-        ));
+          ElevatedButton.icon(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.shopping_cart,
+              color: ColorConstants.white,
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: ColorConstants.mountainMeadow,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            ),
+            label: Text(
+              'Add to Cart',
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .copyWith(color: ColorConstants.white),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

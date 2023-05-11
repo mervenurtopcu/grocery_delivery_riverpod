@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 enum ProductImages {
   bananas('ic_bananas'),
   apple('ic_apple'),
@@ -13,6 +11,6 @@ enum ProductImages {
   final String value;
   const ProductImages(this.value);
 
-  String get toPng => 'assets/products/${value}.png';
+  String get toPng => 'assets/products/$value.png';
   //Image get toImage => Image.asset(toPng);
 }

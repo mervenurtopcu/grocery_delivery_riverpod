@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocerydelivery/features/home/home_provider.dart';
 import 'package:grocerydelivery/product/app_states/nav_provider.dart';
-import 'package:grocerydelivery/product/constants/color_constants.dart';
-import 'package:grocerydelivery/product/constants/string_constants.dart';
-import 'package:grocerydelivery/product/enums/lottie_constants.dart';
-import 'package:grocerydelivery/product/widget/product_container.dart';
 import 'package:lottie/lottie.dart';
+import '../../product/widget/index.dart';
+import '../../product/constants/index.dart';
+import '../../product/enums/index.dart';
 
 part 'favorite_screen.g.dart';
 

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 enum CategoriesImages {
   vegetables('ic_vegetable'),
   fruits('ic_fruits'),
@@ -14,9 +12,10 @@ enum CategoriesImages {
   snacks('ic_snacks'),
   pasta('ic_pasta'),
   ;
+
   final String value;
+
   const CategoriesImages(this.value);
 
-  String get toPng => 'assets/categories/${value}.png';
-  //Image get toImage => Image.asset(toPng);
+  String get toPng => 'assets/categories/$value.png';
 }

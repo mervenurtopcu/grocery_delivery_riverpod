@@ -1,11 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:grocerydelivery/product/constants/color_constants.dart';
-import 'package:grocerydelivery/product/enums/assets_image_size.dart';
+import '../../product/widget/index.dart';
+import '../../product/model/index.dart';
+import '../../product/constants/index.dart';
 
-import '../../product/model/products/product_list.dart';
-import '../../product/widget/product_container.dart';
-import '../home/home_provider.dart';
 
 class ProductListScreen extends ConsumerStatefulWidget {
   const ProductListScreen({

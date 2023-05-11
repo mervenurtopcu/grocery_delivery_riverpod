@@ -1,21 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:grocerydelivery/features/products/product_details_screen.dart';
 import 'package:grocerydelivery/features/products/product_list_screen.dart';
 import 'package:grocerydelivery/features/special_deals/special_deals.dart';
-
-import 'package:grocerydelivery/product/widget/category_card.dart';
-
 import '../../product/app_states/nav_provider.dart';
-import '../../product/constants/color_constants.dart';
-import '../../product/constants/string_constants.dart';
-import '../../product/enums/assets_image_size.dart';
-import '../../product/enums/png_constants.dart';
+import '../../product/widget/index.dart';
+import '../../product/model/index.dart';
+import '../../product/constants/index.dart';
+import '../../product/enums/index.dart';
 
-import '../../product/model/products/product_list.dart';
-
-import '../../product/widget/appbar_search_textfield.dart';
-import '../../product/widget/product_container.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({
@@ -38,7 +30,7 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
             width: AssetsImageSize.small.value,
           ),
         ],
-        bottom: _appbarBottomWidget(context),
+        bottom: appbarBottomWidget(context),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -76,35 +68,7 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.2,
               width: MediaQuery.of(context).size.width * 0.9,
-              child: ListView.separated(
-                separatorBuilder: (context, index) => const SizedBox(
-                  width: 15.0,
-                ),
-                itemCount: categoryList.length>6 ? categoryList.length - 4 : categoryList.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  final list = categoryList[index];
-                  return Column(
-                    children: [
-                      Expanded(
-                          child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ProductListScreen(categoryId: list.categoryId,)));
-                              },
-                              child: CategoryCard(
-                                  list: list,
-                                  imageWidth: AssetsImageSize.small.value,
-                                  containerWidth: 75,
-                                  fit: BoxFit.values[5]))),
-                      Expanded(child: Text(list.categoryName)),
-                    ],
-                  );
-                },
-              ),
+              child: const _CategoryListView(),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -140,28 +104,12 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
                   borderRadius: BorderRadius.circular(15.0),
                   color: ColorConstants.offGreen,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
+                child: const Padding(
+                  padding: EdgeInsets.only(
                     top: 30,
                     bottom: 20,
                   ),
-                  child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 5.0,
-                        mainAxisSpacing: 25.0,
-                      ),
-                      itemCount: discountProductList.length>4? discountProductList.length -2 :discountLists.length,
-                      itemBuilder: (_, index) {
-                        final list = discountProductList[index];
-                        return Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.0),
-                              color: ColorConstants.offGreen,
-                            ),
-                            child: ProductContainer(list: list));
-                      }),
+                  child: _SpecialDealsGridView(),
                 ),
               ),
             )
@@ -170,19 +118,70 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
       ),
     );
   }
+}
 
-  PreferredSize _appbarBottomWidget(BuildContext context) {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-          child: Container(
-            margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-            child: const AppbarSearchTextField(),
-          ),
+class _SpecialDealsGridView extends StatelessWidget {
+  const _SpecialDealsGridView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 5.0,
+          mainAxisSpacing: 25.0,
         ),
+        itemCount: discountProductList.length>4? discountProductList.length -2 :discountLists.length,
+        itemBuilder: (_, index) {
+          final list = discountProductList[index];
+          return Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                color: ColorConstants.offGreen,
+              ),
+              child: ProductContainer(list: list));
+        });
+  }
+}
+
+class _CategoryListView extends StatelessWidget {
+  const _CategoryListView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      separatorBuilder: (context, index) => const SizedBox(
+        width: 15.0,
       ),
+      itemCount: categoryList.length>6 ? categoryList.length - 4 : categoryList.length,
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (context, index) {
+        final list = categoryList[index];
+        return Column(
+          children: [
+            Expanded(
+                child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  ProductListScreen(categoryId: list.categoryId,)));
+                    },
+                    child: CategoryCard(
+                        list: list,
+                        imageWidth: AssetsImageSize.small.value,
+                        containerWidth: 75,
+                        fit: BoxFit.values[5]))),
+            Expanded(child: Text(list.categoryName)),
+          ],
+        );
+      },
     );
   }
 }
@@ -213,7 +212,7 @@ class _DiscountListview extends StatelessWidget {
                 },
                 child: FittedBox(
                     fit: BoxFit.fill,
-                    child: DiscountCard(
+                    child: _DiscountCard(
                       list: list,
                       width: 100,
                       height: 100,
@@ -225,8 +224,8 @@ class _DiscountListview extends StatelessWidget {
   }
 }
 
-class DiscountCard extends StatelessWidget {
-  const DiscountCard({
+class _DiscountCard extends StatelessWidget {
+  const _DiscountCard({
     super.key,
     required this.list,
     required this.height,

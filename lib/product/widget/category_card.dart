@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-
-import '../constants/color_constants.dart';
+import '../../product/constants/index.dart';
 
 
 class CategoryCard extends ConsumerStatefulWidget {

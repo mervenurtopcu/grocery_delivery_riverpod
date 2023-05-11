@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocerydelivery/product/app_states/bottom_navigation_bar.dart';
 import 'package:grocerydelivery/product/theme/light_theme.dart';
-
 import 'firebase_options.dart';
 
 void main() async {

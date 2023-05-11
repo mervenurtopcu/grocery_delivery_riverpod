@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../product/model/products/product_list.dart';
+import '../../product/model/all_models.dart';
+import '../../product/model/product_list.dart';
 class SpecialDealsProvider extends ChangeNotifier{
 
   List<ProductModel> twentyDiscountList = [];

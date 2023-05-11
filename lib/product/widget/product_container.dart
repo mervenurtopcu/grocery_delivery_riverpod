@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../features/home/home_provider.dart';
 import '../../features/products/product_details_screen.dart';
-import '../constants/color_constants.dart';
-import '../enums/assets_image_size.dart';
-import '../model/products/product_list.dart';
-import 'add_button.dart';
+import '../../product/enums/index.dart';
+import '../../product/constants/index.dart';
+import '../../product/model/index.dart';
+import '../../product/widget/index.dart';
 
 
 
@@ -114,7 +113,7 @@ class ProductContainer extends ConsumerWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
-                              InkWell(
+                              const InkWell(
                                 child: AddButton(icon: Icons.add,height: 25,width: 25,)
                               ),
                             ],

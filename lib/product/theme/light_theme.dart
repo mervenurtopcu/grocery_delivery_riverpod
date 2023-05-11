@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import '../constants/color_constants.dart';
+import '../../product/constants/index.dart';
 
 class LightTheme {
   LightTheme._();

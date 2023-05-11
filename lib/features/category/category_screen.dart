@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocerydelivery/features/products/product_list_screen.dart';
-import 'package:grocerydelivery/product/constants/string_constants.dart';
-import 'package:grocerydelivery/product/widget/category_card.dart';
-
-import '../../product/constants/color_constants.dart';
-import '../../product/enums/assets_image_size.dart';
-import '../../product/enums/png_constants.dart';
-import '../../product/model/products/product_list.dart';
-import '../../product/widget/appbar_search_textfield.dart';
+import '../../product/widget/index.dart';
+import '../../product/model/index.dart';
+import '../../product/constants/index.dart';
+import '../../product/enums/index.dart';
 
 class CategoryScreen extends ConsumerStatefulWidget {
   const CategoryScreen({
@@ -34,57 +30,53 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
             width: AssetsImageSize.small.value,
           ),
         ],
-        bottom: _appbarBottomWidget(context),
+        bottom: appbarBottomWidget(context),
       ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 10.0,
-            mainAxisSpacing: 10.0,
-          ),
-          itemCount: categoryList.length,
-          itemBuilder: (BuildContext context, int index) {
-            final list = categoryList[index];
-            return Column(
-              children: [
-                InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductListScreen(
-                                    categoryId: list.categoryId,
-                                  )));
-                    },
-                    child: CategoryCard(
-                        containerHeight: 100,
-                        list: list,
-                        imageWidth: AssetsImageSize.large.value,
-                        containerWidth: 100,
-                        fit: BoxFit.fill)),
-                Expanded(child: Text(list.categoryName)),
-              ],
-            );
-          },
-        ),
+      body: const Padding(
+        padding: EdgeInsets.only(top: 20),
+        child: _CategoriesGridView(),
       ),
     );
   }
+}
 
-  PreferredSize _appbarBottomWidget(BuildContext context) {
-    return PreferredSize(
-      preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-          child: Container(
-            margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-            child: const AppbarSearchTextField(),
-          ),
-        ),
+class _CategoriesGridView extends StatelessWidget {
+  const _CategoriesGridView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 10.0,
+        mainAxisSpacing: 10.0,
       ),
+      itemCount: categoryList.length,
+      itemBuilder: (BuildContext context, int index) {
+        final list = categoryList[index];
+        return Column(
+          children: [
+            InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProductListScreen(
+                                categoryId: list.categoryId,
+                              )));
+                },
+                child: CategoryCard(
+                    containerHeight: 100,
+                    list: list,
+                    imageWidth: AssetsImageSize.large.value,
+                    containerWidth: 100,
+                    fit: BoxFit.fill)),
+            Expanded(child: Text(list.categoryName)),
+          ],
+        );
+      },
     );
   }
 }

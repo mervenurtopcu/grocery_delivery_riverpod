@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../constants/color_constants.dart';
+import '../../product/constants/index.dart';
 
 class AppbarSearchTextField extends StatelessWidget {
   const AppbarSearchTextField({Key? key}) : super(key: key);
@@ -17,7 +16,7 @@ class AppbarSearchTextField extends StatelessWidget {
           borderSide: BorderSide.none,
         ),
         filled: true,
-        fillColor: ColorConstants.whiteApprox,
+        fillColor: ColorConstants.white,
       ),
     );
   }
