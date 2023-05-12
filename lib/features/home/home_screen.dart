@@ -23,8 +23,7 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
 
-    CollectionReference desserts =
-    FirebaseFirestore.instance.collection("desserts");
+
 
     return Scaffold(
       appBar: AppBar(
@@ -92,7 +91,7 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => SpecialDeals(),
+                              builder: (context) => const SpecialDeals(),
                               fullscreenDialog: true));
                     },
                     child: const Text(StringConstants.homeSeeAll,
@@ -212,7 +211,7 @@ class _DiscountListview extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => SpecialDeals(),
+                          builder: (context) => const SpecialDeals(),
                           fullscreenDialog: true));
                 },
                 child: FittedBox(
