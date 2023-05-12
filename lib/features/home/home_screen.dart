@@ -7,6 +7,7 @@ import '../../product/widget/index.dart';
 import '../../product/model/index.dart';
 import '../../product/constants/index.dart';
 import '../../product/enums/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -21,6 +22,10 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeViewState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+
+    CollectionReference desserts =
+    FirebaseFirestore.instance.collection("desserts");
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Welcome \nLena John'),
