@@ -154,13 +154,13 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
 }
 
 class _BottomNavBar extends StatelessWidget {
-   _BottomNavBar({
+   const _BottomNavBar({
     required this.widget,
     required this.ref,
   });
 
   final ProductDetails widget;
-  WidgetRef ref;
+  final WidgetRef ref;
 
   @override
   Widget build(BuildContext context) {
