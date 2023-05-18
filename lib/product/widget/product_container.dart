@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:grocerydelivery/features/cart/cart_screen_provider.dart';
 import '../../features/home/home_provider.dart';
 import '../../features/products/product_details_screen.dart';
 import '../../product/enums/index.dart';
 import '../../product/constants/index.dart';
 import '../../product/model/index.dart';
 import '../../product/widget/index.dart';
-
 
 
 class ProductContainer extends ConsumerWidget {
@@ -113,8 +113,11 @@ class ProductContainer extends ConsumerWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                               ),
-                              const InkWell(
-                                child: AddButton(icon: Icons.add,height: 25,width: 25,)
+                               InkWell(
+                                onTap: (){
+                                  ref.read(cartScreenProvider).addToList(list);
+                                },
+                                child: const AddButton(icon: Icons.add,height: 25,width: 25,)
                               ),
                             ],
                           ),

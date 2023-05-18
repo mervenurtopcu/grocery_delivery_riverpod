@@ -5,14 +5,11 @@ import '../../product/model/index.dart';
 class CartScreenProvider extends ChangeNotifier{
 
   final List<ProductModel> _cartList = [];
-  int _counter =0;
   List<ProductModel> get getCartList => _cartList;
-  int get getAmount => _counter;
 
 
-  void addToList(ProductModel? product,int amount) {
+  void addToList(ProductModel? product) {
     _cartList.add(product!);
-    _counter = amount;
     notifyListeners();
   }
 
@@ -22,17 +19,6 @@ class CartScreenProvider extends ChangeNotifier{
   }
   void clearList(){
     _cartList.clear();
-    notifyListeners();
-  }
-
-  void decrementCounter() {
-    if (_counter > 0) {
-      _counter = _counter - 1;
-      notifyListeners();
-    }
-  }
-  void incrementCounter() {
-    _counter = _counter + 1;
     notifyListeners();
   }
 

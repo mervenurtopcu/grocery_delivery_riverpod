@@ -24,6 +24,8 @@ class AddButton extends StatelessWidget {
         child:  Icon(
           icon,
           color: ColorConstants.white,
-        ));
+        ),
+
+    );
   }
 }

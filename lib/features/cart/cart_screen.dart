@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocerydelivery/features/cart/cart_screen_provider.dart';
-import 'package:grocerydelivery/features/products/product_detail_screen_provider.dart';
 import 'package:grocerydelivery/product/constants/index.dart';
 import 'package:lottie/lottie.dart';
 import '../../product/enums/index.dart';
@@ -21,6 +20,7 @@ class CartScreen extends ConsumerStatefulWidget {
 class _DiscountScreenState extends ConsumerState<CartScreen> {
   @override
   Widget build(BuildContext context) {
+    final provider = ref.watch(cartScreenProvider);
     return Scaffold(
       appBar: AppBar(
         title:const Text(StringConstants.cartAppBar),
@@ -29,27 +29,26 @@ class _DiscountScreenState extends ConsumerState<CartScreen> {
         ),
         actions: [
           IconButton(onPressed: (){
-            ref.read(cartScreenProvider).clearList();
+            provider.clearList();
           }, icon: const Icon(Icons.delete_forever,color: ColorConstants.white,)),
         ],
         centerTitle: true,
       ),
-      body: Column(
+      body: provider.getCartList.isNotEmpty ? Column(
         children: [
           Expanded(child: ListView.builder(
-            itemCount: ref.watch(cartScreenProvider).getCartList.length,
+            itemCount: provider.getCartList.length,
               itemBuilder: (context,index){
-            var cartList = ref.watch(cartScreenProvider).getCartList[index];
+            final item = provider.getCartList[index];
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: MediaQuery.of(context).size.height*0.2,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: ColorConstants.white,
                   boxShadow: [
                     BoxShadow(
-                      color: ColorConstants.doveGray.withOpacity(0.5),
+                      color: ColorConstants.mountainMeadow.withOpacity(0.5),
                       spreadRadius: 1,
                       blurRadius: 1,
                       offset: const Offset(0, 1), // changes position of shadow
@@ -58,47 +57,35 @@ class _DiscountScreenState extends ConsumerState<CartScreen> {
                 ),
                 child: Row(
                   children: [
+                    Image.asset(item.productImage,width:AssetsImageSize.medium.value ,height: AssetsImageSize.medium.value,),
                     Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(cartList.productName,style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: ColorConstants.black,
-                          ),),
-                          Text(cartList.productPrice,style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: ColorConstants.doveGray,
-                          ),),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  IconButton(onPressed: (){
-                                    ref.read(cartScreenProvider).decrementCounter();
-                                  }, icon: const Icon(Icons.remove_circle_outline,color: ColorConstants.mountainMeadow,)),
-                                  Text(ref.watch(cartScreenProvider).getAmount.toString(),style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: ColorConstants.black,
-                                  ),),
-                                  IconButton(onPressed: (){
-                                    ref.read(cartScreenProvider).incrementCounter();
-                                  }, icon: const Icon(Icons.add_circle_outline,color: ColorConstants.mountainMeadow,)),
-                                ],
-                              ),
-                              IconButton(onPressed: (){
-                                ref.read(cartScreenProvider).removeFromList(cartList);
-                              }, icon: const Icon(Icons.delete_outline,color: ColorConstants.mountainMeadow,)),
-                            ],
-                          )
-                        ],
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(item.productName,style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              color: ColorConstants.black,
+                            ),),
+                            Text( '\$${item.productPrice}',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: ColorConstants.doveGray,
+                            ),),
+                          ],
+                        ),
                       ),
-                    )
+
+                    ),
+                      IconButton(onPressed: (){
+                        provider.removeFromList(item);
+                      }, icon: const Icon(Icons.delete_forever,color: ColorConstants.mountainMeadow,)),
                   ],
                 ),
               ),
             );
           }))
         ],
-      )
+      ) : const CartEmptyScreen()
     );
   }
 }

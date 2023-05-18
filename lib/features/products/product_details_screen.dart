@@ -3,12 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:grocerydelivery/features/products/product_detail_screen_provider.dart';
+import 'package:grocerydelivery/features/cart/cart_screen_provider.dart';
 import '../../product/widget/index.dart';
 import '../../product/model/index.dart';
 import '../../product/constants/index.dart';
 import '../../product/enums/index.dart';
-import '../cart/cart_screen_provider.dart';
 
 class ProductDetails extends ConsumerStatefulWidget {
   const ProductDetails({
@@ -88,45 +87,37 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        ref
-                            .read(productDetailScreenProvider)
-                            .incrementCounter();
-                      },
-                      child: const AddButton(
-                        icon: Icons.add,
-                        height: 40,
-                        width: 40,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                      child: Text(
-                        ref
-                            .watch(productDetailScreenProvider)
-                            .getCounter
-                            .toString(),
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        ref
-                            .read(productDetailScreenProvider)
-                            .decrementCounter();
-                      },
-                      child: const AddButton(
-                        icon: Icons.remove,
-                        height: 40,
-                        width: 40,
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     InkWell(
+                //       onTap: () {
+                //       },
+                //       child: const AddButton(
+                //         icon: Icons.add,
+                //         height: 40,
+                //         width: 40,
+                //       ),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                //       child: Text(
+                //        '',
+                //         style: Theme.of(context).textTheme.titleLarge,
+                //       ),
+                //     ),
+                //     InkWell(
+                //       onTap: () {
+                //
+                //       },
+                //       child: const AddButton(
+                //         icon: Icons.remove,
+                //         height: 40,
+                //         width: 40,
+                //       ),
+                //     ),
+                //   ],
+                // ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
@@ -192,9 +183,7 @@ class _BottomNavBar extends StatelessWidget {
           ),
           ElevatedButton.icon(
             onPressed: () {
-              ref.read(cartScreenProvider).addToList(widget.item, ref
-                  .watch(productDetailScreenProvider)
-                  .getCounter);
+              ref.read(cartScreenProvider).addToList(widget.item);
             },
             icon: const Icon(
               Icons.shopping_cart,
