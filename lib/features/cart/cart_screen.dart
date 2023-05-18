@@ -57,22 +57,28 @@ class _DiscountScreenState extends ConsumerState<CartScreen> {
                 ),
                 child: Row(
                   children: [
-                    Image.asset(item.productImage,width:AssetsImageSize.medium.value ,height: AssetsImageSize.medium.value,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Image.asset(item.productImage,width:AssetsImageSize.medium.value ,height: AssetsImageSize.medium.value,),
+                    ),
                     Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(item.productName,style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: ColorConstants.black,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(item.productName,style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: ColorConstants.black,
+                          ),),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: Text(item.productAmount ?? '',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: ColorConstants.doveGray,fontWeight: FontWeight.w200,
                             ),),
-                            Text( '\$${item.productPrice}',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: ColorConstants.doveGray,
-                            ),),
-                          ],
-                        ),
+                          ),
+                          Text( '\$${item.productPrice}',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: ColorConstants.doveGray,
+                          ),),
+                        ],
                       ),
 
                     ),

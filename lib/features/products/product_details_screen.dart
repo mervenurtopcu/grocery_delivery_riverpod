@@ -87,37 +87,6 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                     ],
                   ),
                 ),
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: [
-                //     InkWell(
-                //       onTap: () {
-                //       },
-                //       child: const AddButton(
-                //         icon: Icons.add,
-                //         height: 40,
-                //         width: 40,
-                //       ),
-                //     ),
-                //     Padding(
-                //       padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                //       child: Text(
-                //        '',
-                //         style: Theme.of(context).textTheme.titleLarge,
-                //       ),
-                //     ),
-                //     InkWell(
-                //       onTap: () {
-                //
-                //       },
-                //       child: const AddButton(
-                //         icon: Icons.remove,
-                //         height: 40,
-                //         width: 40,
-                //       ),
-                //     ),
-                //   ],
-                // ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
@@ -126,6 +95,8 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: ColorConstants.black, fontWeight: FontWeight.w500),
                 ),
+                Text(widget.item?.productAmount ?? '',style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                    color: ColorConstants.black, fontWeight: FontWeight.w100),),
                 ExpandableText(
                   widget.item!.productDescription,
                   expandText: StringConstants.expandableShowMore,

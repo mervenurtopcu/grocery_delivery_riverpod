@@ -4,40 +4,25 @@ import '../../product/constants/index.dart';
 
 // All products
 final List<ProductModel> products = [
-  ProductModel(0, 'Apple', StringConstants.productDetail, '15.99', 3.5,
-      ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 50),
+  ProductModel(0, 'Apple', StringConstants.productDetail, '9.99', 3.5,
+      ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 50, productAmount: '1 Kg'),
   ProductModel(1, 'Bananas', StringConstants.productDetail, '17.99', 4.5,
-      ProductImages.bananas.toPng, 1, categoryNames[1], categoryImage[1], 20),
+      ProductImages.bananas.toPng, 1, categoryNames[1], categoryImage[1], 20,
+      productAmount: '1 Kg'),
   ProductModel(2, 'Bread', StringConstants.productDetail, '5.00', 3.5,
       ProductImages.bread.toPng, 3, categoryNames[3], categoryImage[3], 0),
   ProductModel(3, 'Coffee', StringConstants.productDetail, '49.99', 4.0,
       ProductImages.coffee.toPng, 2, categoryNames[2], categoryImage[2], 50),
   ProductModel(4, 'Oranges', StringConstants.productDetail, '9.99', 4.0,
-      ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 50),
+      ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 50, productAmount: '1 Kg'),
   ProductModel(
-      5,
-      'Strawberries',
-      StringConstants.productDetail,
-      '24.99',
-      3.5,
-      ProductImages.strawberries.toPng,
-      1,
-      categoryNames[1],
-      categoryImage[1],
-      20),
+      5, 'Strawberries', StringConstants.productDetail, '24.99', 3.5,
+      ProductImages.strawberries.toPng, 1, categoryNames[1], categoryImage[1], 20, productAmount: '1 Kg'),
   ProductModel(6, 'Tide Detergent', StringConstants.productDetail, '65.99', 5.0,
       ProductImages.tide.toPng, 9, categoryNames[9], categoryImage[9], 0),
-  ProductModel(
-      7,
-      'Watermelon',
-      StringConstants.productDetail,
-      '32.00',
-      4.5,
-      ProductImages.watermelon.toPng,
-      1,
-      categoryNames[1],
-      categoryImage[1],
-      20),
+  ProductModel(7, 'Watermelon', StringConstants.productDetail, '32.00', 4.5,
+      ProductImages.watermelon.toPng, 1, categoryNames[1], categoryImage[1], 20,
+      productAmount: '3 Kg'),
 ];
 
 //product list by category id
@@ -75,16 +60,26 @@ final List<ProductModel> fiftyDiscountList =
 
 //All categorie names
 final List<String> categoryNames = [
-  StringConstants.catVegetables,// https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_fruits.png?alt=media&token=c0fee4d8-91b3-4c27-a211-93cd148079db
-  StringConstants.catFruits,// https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_fruits.png?alt=media&token=c0fee4d8-91b3-4c27-a211-93cd148079db
-  StringConstants.catDrinks,// https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_drink.png?alt=media&token=d33fa5d0-7b61-4ca6-889c-9aef385214de
-  StringConstants.catBakery,// https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_bakery.png?alt=media&token=ba601581-1ec8-409d-8d42-cbccd786d37d
-  StringConstants.catSnacks,// https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_snacks.png?alt=media&token=c0990e05-5974-47dc-9364-52c3f8d5a4d6
-  StringConstants.catMilkEgg,// https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_milk_egg.png?alt=media&token=5143dcd4-e5ef-46fd-86c2-08b8fead1e14
-  StringConstants.catFrozen,// https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_frozen.png?alt=media&token=66a3fd2a-97c8-4de9-a83c-6a9f7d21be43
-  StringConstants.catOils,// https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_oils.png?alt=media&token=6ce69ff0-4c1e-42d3-bc1f-bd2351aa6ad8
-  StringConstants.catPasta,// https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_pasta.png?alt=media&token=966928a6-e0f2-407d-98cb-3e6d2d587766
-  StringConstants.catCleaning//https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_cleaning.png?alt=media&token=392843cb-dae6-4be9-aa0d-f836f497e66e
+  StringConstants.catVegetables,
+  // https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_fruits.png?alt=media&token=c0fee4d8-91b3-4c27-a211-93cd148079db
+  StringConstants.catFruits,
+  // https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_fruits.png?alt=media&token=c0fee4d8-91b3-4c27-a211-93cd148079db
+  StringConstants.catDrinks,
+  // https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_drink.png?alt=media&token=d33fa5d0-7b61-4ca6-889c-9aef385214de
+  StringConstants.catBakery,
+  // https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_bakery.png?alt=media&token=ba601581-1ec8-409d-8d42-cbccd786d37d
+  StringConstants.catSnacks,
+  // https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_snacks.png?alt=media&token=c0990e05-5974-47dc-9364-52c3f8d5a4d6
+  StringConstants.catMilkEgg,
+  // https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_milk_egg.png?alt=media&token=5143dcd4-e5ef-46fd-86c2-08b8fead1e14
+  StringConstants.catFrozen,
+  // https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_frozen.png?alt=media&token=66a3fd2a-97c8-4de9-a83c-6a9f7d21be43
+  StringConstants.catOils,
+  // https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_oils.png?alt=media&token=6ce69ff0-4c1e-42d3-bc1f-bd2351aa6ad8
+  StringConstants.catPasta,
+  // https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_pasta.png?alt=media&token=966928a6-e0f2-407d-98cb-3e6d2d587766
+  StringConstants.catCleaning
+  //https://firebasestorage.googleapis.com/v0/b/grocery-delivery-54e0e.appspot.com/o/categories%2Fic_cleaning.png?alt=media&token=392843cb-dae6-4be9-aa0d-f836f497e66e
 ];
 
 //All categorie images path

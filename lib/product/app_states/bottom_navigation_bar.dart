@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:grocerydelivery/features/cart/cart_screen_provider.dart';
 import 'package:grocerydelivery/features/category/category_screen.dart';
 import 'package:grocerydelivery/features/favorites/favorite_screen.dart';
 import 'package:grocerydelivery/features/home/home_screen.dart';
 import 'package:grocerydelivery/features/profile/profile_screen.dart';
+import 'package:grocerydelivery/product/constants/color_constants.dart';
 import '../../features/cart/cart_screen.dart';
 import 'nav_provider.dart';
 
@@ -45,16 +47,41 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                 onTap: (index) {
                   ref.read(navProvider.notifier).updateIndex(index);
                 },
-                items: const [
-                  BottomNavigationBarItem(
+                items:  [
+                  const BottomNavigationBarItem(
                       icon: Icon(Icons.home), label: 'Home'),
-                  BottomNavigationBarItem(
+                  const BottomNavigationBarItem(
                     icon: Icon(Icons.category), label: 'Category',),
-                  BottomNavigationBarItem(
+                  const BottomNavigationBarItem(
                       icon: Icon(Icons.favorite_outlined), label: 'Favorite'),
-                  BottomNavigationBarItem(
+                  ref.watch(cartScreenProvider).getCartList.isNotEmpty ? BottomNavigationBarItem(
+                      icon: Stack(
+                        children: [
+                          Icon(Icons.shopping_cart),
+                          Positioned(
+                              top: 1.0,
+                              right: 1.0,
+                              child: Stack(
+                            children: [
+                              Container(
+                                height: 15.0,
+                                width: 15.0,
+                                decoration: const BoxDecoration(
+                                  color: ColorConstants.black,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(
+                                  child: Text(ref.watch(cartScreenProvider).getCartList.length.toString(),style: Theme.of(context).textTheme.bodySmall?.copyWith(color: ColorConstants.white),),
+                                ),
+                              ),
+                            ],
+                          )),
+                        ],
+                      ),
+                    label: 'Cart',
+                  ): const BottomNavigationBarItem(
                       icon: Icon(Icons.shopping_cart), label: 'Cart'),
-                  BottomNavigationBarItem(
+                  const BottomNavigationBarItem(
                       icon: Icon(Icons.person), label: 'Profile'),
                 ],
               ),
