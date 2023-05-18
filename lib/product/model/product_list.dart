@@ -5,25 +5,36 @@ import '../../product/constants/index.dart';
 // All products
 final List<ProductModel> products = [
   ProductModel(0, 'Apple', StringConstants.productDetail, '9.99', 3.5,
-      ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 50, productAmount: '1 Kg'),
+      ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 50, productAmount: '1 Kg',productPriceWithDiscount: newPrice(9.99, 50.0)),
+
   ProductModel(1, 'Bananas', StringConstants.productDetail, '17.99', 4.5,
       ProductImages.bananas.toPng, 1, categoryNames[1], categoryImage[1], 20,
-      productAmount: '1 Kg'),
+      productAmount: '1 Kg',productPriceWithDiscount: newPrice(17.99, 20.0)),
+
   ProductModel(2, 'Bread', StringConstants.productDetail, '5.00', 3.5,
       ProductImages.bread.toPng, 3, categoryNames[3], categoryImage[3], 0),
+
   ProductModel(3, 'Coffee', StringConstants.productDetail, '49.99', 4.0,
-      ProductImages.coffee.toPng, 2, categoryNames[2], categoryImage[2], 50),
+      ProductImages.coffee.toPng, 2, categoryNames[2], categoryImage[2], 50,productPriceWithDiscount: newPrice(49.99, 50.0)),
+
   ProductModel(4, 'Oranges', StringConstants.productDetail, '9.99', 4.0,
-      ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 50, productAmount: '1 Kg'),
+      ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 50, productAmount: '1 Kg',productPriceWithDiscount: newPrice(9.99, 50.0)),
+
   ProductModel(
       5, 'Strawberries', StringConstants.productDetail, '24.99', 3.5,
-      ProductImages.strawberries.toPng, 1, categoryNames[1], categoryImage[1], 20, productAmount: '1 Kg'),
+      ProductImages.strawberries.toPng, 1, categoryNames[1], categoryImage[1], 20, productAmount: '1 Kg',productPriceWithDiscount: newPrice(24.99, 20.0)),
+
   ProductModel(6, 'Tide Detergent', StringConstants.productDetail, '65.99', 5.0,
       ProductImages.tide.toPng, 9, categoryNames[9], categoryImage[9], 0),
+
   ProductModel(7, 'Watermelon', StringConstants.productDetail, '32.00', 4.5,
       ProductImages.watermelon.toPng, 1, categoryNames[1], categoryImage[1], 20,
-      productAmount: '3 Kg'),
+      productAmount: '3 Kg', productPriceWithDiscount: newPrice(32.00, 20.0)),
 ];
+
+String newPrice(double price, double discountRate) {
+  return (price - (price * discountRate / 100)).toStringAsFixed(2);
+}
 
 //product list by category id
 List<ProductModel>? productLists(int categoryId) {

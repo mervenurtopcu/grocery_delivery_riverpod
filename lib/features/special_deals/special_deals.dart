@@ -29,12 +29,12 @@ class _SpecialDealsState extends ConsumerState<SpecialDeals> {
         children: [
           const Spacer(flex: 1,),
           Expanded(
-            flex: 8,
+            flex: 15,
             child: _DiscountCard(list: twentyDiscountList,discountRate: '20', ),
           ),
           const Spacer(flex: 1,),
           Expanded(
-            flex: 8,
+            flex: 15,
             child: _DiscountCard(list: fiftyDiscountList,discountRate: '50', ),
           ),
           const Spacer(flex: 1,),

@@ -10,14 +10,12 @@ import '../../product/widget/index.dart';
 
 
 class ProductContainer extends ConsumerWidget {
-  const ProductContainer( {
+  const ProductContainer({
     super.key,
     required this.list,
-
   });
 
   final ProductModel? list;
-
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,8 +23,12 @@ class ProductContainer extends ConsumerWidget {
       children: [
         Expanded(
           child: InkWell(
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ProductDetails(item: list,),fullscreenDialog: true));
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ProductDetails(
+                        item: list,
+                      ),
+                  fullscreenDialog: true));
             },
             child: Container(
                 width: 150,
@@ -57,13 +59,15 @@ class ProductContainer extends ConsumerWidget {
                           ref.read(homeScreenProvider).removeFromList(list!);
                         }
                       },
-                      icon:
-                          ref.watch(homeScreenProvider).getSavedList.contains(list)
-                              ? const Icon(Icons.favorite, color: Colors.red)
-                              : const Icon(
-                                  Icons.favorite_outline,
-                                  color: Colors.green,
-                                ),
+                      icon: ref
+                              .watch(homeScreenProvider)
+                              .getSavedList
+                              .contains(list)
+                          ? const Icon(Icons.favorite, color: Colors.red)
+                          : const Icon(
+                              Icons.favorite_outline,
+                              color: Colors.green,
+                            ),
                     ),
                     Expanded(
                       child: Center(
@@ -101,25 +105,62 @@ class ProductContainer extends ConsumerWidget {
                                 ),
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                '\$${list!.productPrice}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                      color: ColorConstants.black,
-                                      fontWeight: FontWeight.bold,
+                              list!.productPriceWithDiscount != null
+                                  ? Text(
+                                      '\$${list!.productPrice}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            color: ColorConstants.doveGray,
+                                            fontWeight: FontWeight.bold,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                          ),
+                                    )
+                                  : Text(
+                                      '\$${list!.productPrice}',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            color: ColorConstants.doveGray,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                     ),
-                              ),
-                               InkWell(
-                                onTap: (){
-                                  ref.read(cartScreenProvider).addToList(list);
-                                },
-                                child: const AddButton(icon: Icons.add,height: 25,width: 25,)
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: list!.productPriceWithDiscount != null
+                                    ? Text(
+                                        '\$${list!.productPriceWithDiscount}',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(
+                                              color: ColorConstants.mountainMeadow,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      )
+                                    : Text(''),
                               ),
                             ],
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: InkWell(
+                                onTap: () {
+                                  ref.read(cartScreenProvider).addToList(list);
+                                  var snackBar = SnackBar(content: Text('${list!.productName} added to cart successfully'));
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                                },
+                                child: const AddButton(
+                                  icon: Icons.add,
+                                  height: 25,
+                                  width: 25,
+                                )),
                           ),
                         ],
                       ),

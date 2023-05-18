@@ -5,6 +5,7 @@ class ColorConstants {
 
   static const Color white = Colors.white;
   static const Color black = Colors.black;
+  static const Color orange = Colors.orange;
   static const Color mountainMeadow = Color(0xFF20C060);
   static const Color forestGreen = Color(0xFF26B621);
   static const Color doveGray = Color(0xFF656565);

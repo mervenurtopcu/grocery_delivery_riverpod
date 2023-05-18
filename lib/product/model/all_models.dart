@@ -6,6 +6,7 @@ class ProductModel {
   final String productName;
   final String productDescription;
   final String? productAmount;
+  final String? productPriceWithDiscount;
   final String productPrice;
   final double productRate;
   final String productImage;
@@ -25,8 +26,9 @@ class ProductModel {
       this.categoryName,
       this.categoryImage,
       this.discountRate,
-      {this.productAmount}
-      );
+      {this.productAmount,
+      this.productPriceWithDiscount});
+
 }
 
 //category model

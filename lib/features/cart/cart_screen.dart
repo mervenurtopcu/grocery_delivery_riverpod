@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocerydelivery/features/cart/cart_screen_provider.dart';
@@ -29,7 +30,22 @@ class _DiscountScreenState extends ConsumerState<CartScreen> {
         ),
         actions: [
           IconButton(onPressed: (){
-            provider.clearList();
+            showDialog(context: context,barrierDismissible: false, builder: (BuildContext context) => AlertDialog(
+              title: const Text('Are you sure?'),
+              backgroundColor: ColorConstants.white,
+              content: const Text('Do you want to remove all items from cart?'),
+              actions: [
+                CupertinoDialogAction(onPressed: (){
+                  Navigator.pop(context);
+                }, child: const Text('No')),
+                CupertinoDialogAction(onPressed: (){
+                  provider.clearList();
+                  Navigator.pop(context);
+                }, child: const Text('Yes')),
+
+              ],
+            ));
+
           }, icon: const Icon(Icons.delete_forever,color: ColorConstants.white,)),
         ],
         centerTitle: true,
@@ -75,15 +91,54 @@ class _DiscountScreenState extends ConsumerState<CartScreen> {
                               color: ColorConstants.doveGray,fontWeight: FontWeight.w200,
                             ),),
                           ),
-                          Text( '\$${item.productPrice}',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: ColorConstants.doveGray,
-                          ),),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '\$${item.productPrice}',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                  color: ColorConstants.doveGray,
+                                  decoration: TextDecoration.lineThrough,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8.0),
+                                child: Text(
+                                  '\$${item.productPriceWithDiscount}',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge
+                                      ?.copyWith(
+                                    color: ColorConstants.mountainMeadow,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
 
                     ),
                       IconButton(onPressed: (){
-                        provider.removeFromList(item);
+                        showDialog(context: context,barrierDismissible: false, builder: (BuildContext context) => AlertDialog(
+                          title: const Text('Are you sure?'),
+                          backgroundColor: ColorConstants.white,
+                          content: Text('Do you want to remove ${item.productName} from cart?'),
+                          actions: [
+                            CupertinoDialogAction(onPressed: (){
+                              Navigator.pop(context);
+                            }, child: const Text('No')),
+                            CupertinoDialogAction(onPressed: (){
+                              provider.removeFromList(item);
+                              Navigator.pop(context);
+                            }, child: const Text('Yes')),
+
+                          ],
+                        ));
                       }, icon: const Icon(Icons.delete_forever,color: ColorConstants.mountainMeadow,)),
                   ],
                 ),

@@ -67,7 +67,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                                 height: 15.0,
                                 width: 15.0,
                                 decoration: const BoxDecoration(
-                                  color: ColorConstants.black,
+                                  color: ColorConstants.orange,
                                   shape: BoxShape.circle,
                                 ),
                                 child: Center(
