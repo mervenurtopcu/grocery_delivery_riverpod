@@ -7,8 +7,7 @@ import '../../product/widget/index.dart';
 import '../../product/model/index.dart';
 import '../../product/constants/index.dart';
 import '../../product/enums/index.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
+import '../profile/profile_screen.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({
@@ -22,16 +21,18 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeViewState extends ConsumerState<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-
-
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Welcome \nLena John'),
         actions: [
-          Image.asset(
-            PngConstants.avatar.toPng,
-            width: AssetsImageSize.small.value,
+          InkWell(
+            child: Image.asset(
+              PngConstants.avatar.toPng,
+              width: AssetsImageSize.small.value,
+            ),
+            onTap: () {
+              ref.read(navProvider.notifier).updateIndex(4);
+            },
           ),
         ],
         bottom: appbarBottomWidget(context),
@@ -132,13 +133,14 @@ class _SpecialDealsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 5.0,
           mainAxisSpacing: 25.0,
         ),
-        itemCount: discountProductList.length>4? discountProductList.length -2 :discountLists.length,
+        itemCount: discountProductList.length > 4
+            ? discountProductList.length - 2
+            : discountLists.length,
         itemBuilder: (_, index) {
           final list = discountProductList[index];
           return Container(
@@ -162,7 +164,9 @@ class _CategoryListView extends StatelessWidget {
       separatorBuilder: (context, index) => const SizedBox(
         width: 15.0,
       ),
-      itemCount: categoryList.length>6 ? categoryList.length - 4 : categoryList.length,
+      itemCount: categoryList.length > 6
+          ? categoryList.length - 4
+          : categoryList.length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
         final list = categoryList[index];
@@ -174,8 +178,9 @@ class _CategoryListView extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  ProductListScreen(categoryId: list.categoryId,)));
+                              builder: (context) => ProductListScreen(
+                                    categoryId: list.categoryId,
+                                  )));
                     },
                     child: CategoryCard(
                         list: list,

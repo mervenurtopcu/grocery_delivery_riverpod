@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'all_models.dart';
 import '../../product/enums/index.dart';
 import '../../product/constants/index.dart';
@@ -135,3 +137,14 @@ final discountLists = List<DiscountModel>.generate(2, (index) {
         ColorConstants.negroni);
   }
 });
+
+final profileList =[
+  Profile(index: 0, listTitle: StringConstants.profilePersonalInfo, icon: const Icon(Icons.person),color: Colors.deepPurpleAccent),
+  Profile(index: 1, listTitle: StringConstants.profileYourActivity, icon: const Icon(Icons.history),color: Colors.orangeAccent),
+  Profile(index: 2, listTitle: StringConstants.profileSettings, icon: const Icon(Icons.settings),color: Colors.pinkAccent),
+  Profile(index: 3, listTitle: StringConstants.profileRewards, icon: const Icon(Icons.card_giftcard),color: Colors.greenAccent),
+  Profile(index: 4, listTitle: StringConstants.profileQrCode, icon: const Icon(Icons.qr_code),color: Colors.lightBlueAccent),
+  Profile(index: 5, listTitle: StringConstants.profileNotification, icon: const Icon(Icons.notifications),color: Colors.deepOrangeAccent),
+  Profile(index: 6, listTitle: StringConstants.profileLogOut, icon: const Icon(Icons.logout),color: Colors.purpleAccent),
+
+];

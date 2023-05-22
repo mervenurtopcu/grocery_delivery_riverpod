@@ -24,6 +24,7 @@ class ProductContainer extends ConsumerWidget {
         Expanded(
           child: InkWell(
             onTap: () {
+
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ProductDetails(
                         item: list,

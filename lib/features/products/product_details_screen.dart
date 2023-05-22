@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:grocerydelivery/features/cart/cart_screen_provider.dart';
+import '../../product/app_states/nav_provider.dart';
 import '../../product/widget/index.dart';
 import '../../product/model/index.dart';
 import '../../product/constants/index.dart';
@@ -35,9 +36,15 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
             color: ColorConstants.black,
           ),
           actions: [
-            Image.asset(
-              PngConstants.avatar.toPng,
-              width: AssetsImageSize.small.value,
+            InkWell(
+              child: Image.asset(
+                PngConstants.avatar.toPng,
+                width: AssetsImageSize.small.value,
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                ref.read(navProvider.notifier).updateIndex(4);
+              },
             ),
           ],
         ),
@@ -95,7 +102,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                       color: ColorConstants.black, fontWeight: FontWeight.w500),
                 ),
-                Text(widget.item?.productAmount ?? '',style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+               Text(widget.item?.productAmount ?? '',style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                     color: ColorConstants.black, fontWeight: FontWeight.w100),),
                 ExpandableText(
                   widget.item!.productDescription,
@@ -131,9 +138,11 @@ class _BottomNavBar extends StatelessWidget {
       color: Colors.transparent,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -143,14 +152,42 @@ class _BottomNavBar extends StatelessWidget {
                         color: ColorConstants.doveGray,
                       ),
                 ),
-                Text(
-                  '\$${widget.item!.productPrice}',
-                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                      color: ColorConstants.black,
-                      fontWeight: FontWeight.w500),
+                widget.item?.productPriceWithDiscount != null ?Text(
+                  '\$${widget.item?.productPrice}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(
+                    color: ColorConstants.doveGray,
+                    decoration:
+                    TextDecoration.lineThrough,
+                  ),
+                ): Text(
+                  '\$${widget.item?.productPrice}',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(
+                    color: ColorConstants.doveGray,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: widget.item?.productPriceWithDiscount != null
+                ? Text(
+              '\$${widget.item?.productPriceWithDiscount}',
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(
+                color: ColorConstants.mountainMeadow,
+              ),
+            )
+                : Text(''),
           ),
           ElevatedButton.icon(
             onPressed: () {

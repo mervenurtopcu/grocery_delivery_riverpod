@@ -144,7 +144,60 @@ class _DiscountScreenState extends ConsumerState<CartScreen> {
                 ),
               ),
             );
-          }))
+          })),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Expanded(
+              child: Container(
+                //margin: const EdgeInsets.symmetric(horizontal: 16.0),
+               decoration: BoxDecoration(
+                  color: Colors.transparent,
+                 border: Border(top: BorderSide(color: ColorConstants.doveGray.withOpacity(0.5),width: 1))
+
+
+               ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Total',style: TextStyle(
+                            color: ColorConstants.doveGray,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),),
+                            Text('\$${provider.getTotal}',style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: ColorConstants.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                          ),),
+
+                        ],
+                      ),
+                      ElevatedButton(
+                          onPressed: (){
+                            ref.read(navProvider.notifier).updateIndex(0);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: ColorConstants.mountainMeadow,
+                            padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.05,vertical: MediaQuery.of(context).size.width*0.03),
+                            shape: const StadiumBorder(),
+
+
+                          ), child: Text('CHECKOUT',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: ColorConstants.white,
+                      ),),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+
         ],
       ) : const CartEmptyScreen()
     );

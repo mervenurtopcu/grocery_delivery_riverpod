@@ -8,6 +8,10 @@ class HomeScreenProvider extends ChangeNotifier {
   final List<ProductModel> _savedList = [];
   List<ProductModel> get getSavedList => _savedList;
 
+  // bool _isLoading = false;
+  //
+  // bool get getIsLoading => _isLoading;
+
   void addToList(ProductModel product) {
     _savedList.add(product);
     notifyListeners();
@@ -16,6 +20,10 @@ class HomeScreenProvider extends ChangeNotifier {
     _savedList.remove(product);
     notifyListeners();
   }
-
+  //
+  // void changeLoadingState(bool state){
+  //   _isLoading = state;
+  //   notifyListeners();
+  // }
 }
 final homeScreenProvider = ChangeNotifierProvider((ref) => HomeScreenProvider());

@@ -51,4 +51,16 @@ class StringConstants {
 
   static const String productDetail =
       "A product needs to be relevant: the users must have an immediate use for it. A product needs to be functionally able to do what it is supposed to, and do it with a good quality.";
+
+  //Profile Page
+  static const String profilePersonalInfo = "Personal Information";
+  static const String profileYourActivity = "Your Activity";
+  static const String profileSettings = "Settings";
+  static const String profileRewards = "Rewards";
+  static const String profileQrCode= "QR Code";
+  static const String profileNotification = "Notifications";
+  static const String profileLogOut = "Log Out";
+
+
+
 }

@@ -1,6 +1,7 @@
 // Model of product
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
 class ProductModel {
   final int productId;
   final String productName;
@@ -50,4 +51,16 @@ class DiscountModel {
   final String discountDescription;
   final String url;
   final Color color;
+}
+
+class Profile {
+  Profile( {
+  required this.index,required this.icon,required this.listTitle,required this.color
+});
+  final int index;
+  final Icon icon;
+  final Color color;
+
+  final String listTitle;
+
 }

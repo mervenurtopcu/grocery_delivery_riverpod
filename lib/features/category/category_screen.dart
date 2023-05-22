@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocerydelivery/features/products/product_list_screen.dart';
+import '../../product/app_states/nav_provider.dart';
 import '../../product/widget/index.dart';
 import '../../product/model/index.dart';
 import '../../product/constants/index.dart';
@@ -25,9 +26,14 @@ class _CategoryScreenState extends ConsumerState<CategoryScreen> {
               color: ColorConstants.white,
             ),
         actions: [
-          Image.asset(
-            PngConstants.avatar.toPng,
-            width: AssetsImageSize.small.value,
+          InkWell(
+            child: Image.asset(
+              PngConstants.avatar.toPng,
+              width: AssetsImageSize.small.value,
+            ),
+            onTap: () {
+              ref.read(navProvider.notifier).updateIndex(4);
+            },
           ),
         ],
         bottom: appbarBottomWidget(context),
