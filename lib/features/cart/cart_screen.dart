@@ -46,8 +46,8 @@ class _DiscountScreenState extends ConsumerState<CartScreen> {
               ],
             ));
 
-          }, icon: const Icon(Icons.delete_forever,color: ColorConstants.white,)),
-        ],
+          }, icon: provider.getCartList.isNotEmpty ? const Icon(Icons.delete_forever,color: ColorConstants.white,): const SizedBox(),
+          ),],
         centerTitle: true,
       ),
       body: provider.getCartList.isNotEmpty ? Column(
@@ -95,28 +95,53 @@ class _DiscountScreenState extends ConsumerState<CartScreen> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              item.productPriceWithDiscount != null
+                                  ? Text(
                                 '\$${item.productPrice}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                   color: ColorConstants.doveGray,
                                   decoration: TextDecoration.lineThrough,
+                                ),
+                              )
+                                  : Text(
+                                '\$${item.productPrice}',
+                                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                  color: ColorConstants.mountainMeadow,
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 8.0),
-                                child: Text(
+                                child: item.productPriceWithDiscount != null
+                                    ? Text(
                                   '\$${item.productPriceWithDiscount}',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge
-                                      ?.copyWith(
+                                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                     color: ColorConstants.mountainMeadow,
                                   ),
-                                ),
+                                )
+                                    : Text(''),
                               ),
+                              // Text(
+                              //   '\$${item.productPrice}',
+                              //   style: Theme.of(context)
+                              //       .textTheme
+                              //       .bodyMedium
+                              //       ?.copyWith(
+                              //     color: ColorConstants.doveGray,
+                              //     decoration: TextDecoration.lineThrough,
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(left: 8.0),
+                              //   child: Text(
+                              //     '\$${item.productPriceWithDiscount}',
+                              //     style: Theme.of(context)
+                              //         .textTheme
+                              //         .bodyLarge
+                              //         ?.copyWith(
+                              //       color: ColorConstants.mountainMeadow,
+                              //     ),
+                              //   ),
+                              // ),
                             ],
                           ),
                         ],
@@ -147,52 +172,46 @@ class _DiscountScreenState extends ConsumerState<CartScreen> {
           })),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Expanded(
-              child: Container(
-                //margin: const EdgeInsets.symmetric(horizontal: 16.0),
-               decoration: BoxDecoration(
-                  color: Colors.transparent,
-                 border: Border(top: BorderSide(color: ColorConstants.doveGray.withOpacity(0.5),width: 1))
-
-
-               ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text('Total',style: TextStyle(
-                            color: ColorConstants.doveGray,
+            child: Container(
+             decoration: BoxDecoration(
+                color: Colors.transparent,
+               border: Border(top: BorderSide(color: ColorConstants.doveGray.withOpacity(0.5),width: 1))
+             ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0,vertical: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        const Text('Total',style: TextStyle(
+                          color: ColorConstants.doveGray,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),),
+                          Text('\$${provider.getTotal}',style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: ColorConstants.black,
                             fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),),
-                            Text('\$${provider.getTotal}',style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: ColorConstants.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                          ),),
+                            fontWeight: FontWeight.w500,
+                        ),),
 
-                        ],
-                      ),
-                      ElevatedButton(
-                          onPressed: (){
-                            ref.read(navProvider.notifier).updateIndex(0);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: ColorConstants.mountainMeadow,
-                            padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.05,vertical: MediaQuery.of(context).size.width*0.03),
-                            shape: const StadiumBorder(),
+                      ],
+                    ),
+                    ElevatedButton(
+                        onPressed: (){
+                          ref.read(navProvider.notifier).updateIndex(0);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorConstants.mountainMeadow,
+                          padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.05,vertical: MediaQuery.of(context).size.width*0.03),
+                          shape: const StadiumBorder(),
 
 
-                          ), child: Text('CHECKOUT',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: ColorConstants.white,
-                      ),),
-                      ),
-                    ],
-                  ),
+                        ), child: Text('CHECKOUT',style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: ColorConstants.white,
+                    ),),
+                    ),
+                  ],
                 ),
               ),
             ),

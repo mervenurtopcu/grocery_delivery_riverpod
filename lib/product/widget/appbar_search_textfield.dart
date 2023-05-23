@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../features/search_view/search_delegate.dart';
 import '../../product/constants/index.dart';
 
 class AppbarSearchTextField extends StatelessWidget {
@@ -9,7 +10,17 @@ class AppbarSearchTextField extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         hintText: 'Search',
-        prefixIcon: const Icon(Icons.search),
+        prefixIcon: IconButton(
+          onPressed: () {
+            // method to show the search bar
+            showSearch(
+                context: context,
+                // delegate to customize the search bar
+                delegate: CustomSearchDelegate()
+            );
+          },
+          icon: const Icon(Icons.search),
+        ),
         contentPadding: const EdgeInsets.all(10),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -17,6 +28,7 @@ class AppbarSearchTextField extends StatelessWidget {
         ),
         filled: true,
         fillColor: ColorConstants.white,
+
       ),
     );
   }

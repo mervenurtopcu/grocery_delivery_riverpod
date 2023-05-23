@@ -8,6 +8,7 @@ import '../../product/model/index.dart';
 import '../../product/constants/index.dart';
 import '../../product/enums/index.dart';
 import '../profile/profile_screen.dart';
+import '../search_view/search_delegate.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({
@@ -25,6 +26,18 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
       appBar: AppBar(
         title: const Text('Welcome \nLena John'),
         actions: [
+          // IconButton(
+          //   onPressed: () {
+          //     // method to show the search bar
+          //     showSearch(
+          //         context: context,
+          //         // delegate to customize the search bar
+          //         delegate: CustomSearchDelegate()
+          //     );
+          //   },
+          //   icon: const Icon(Icons.search),
+          // ),
+
           InkWell(
             child: Image.asset(
               PngConstants.avatar.toPng,
@@ -34,6 +47,7 @@ class _HomeViewState extends ConsumerState<HomeScreen> {
               ref.read(navProvider.notifier).updateIndex(4);
             },
           ),
+
         ],
         bottom: appbarBottomWidget(context),
       ),

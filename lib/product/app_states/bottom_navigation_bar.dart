@@ -31,7 +31,7 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
     var navIndex = ref.watch(navProvider);
     return Scaffold(
       body: Center(
-        child: _widgetOptions[navIndex.index],
+        child:navIndex.isLoading ?const CircularProgressIndicator(color: ColorConstants.doveGray,): _widgetOptions[navIndex.index],
       ),
       bottomNavigationBar: SizedBox(
         height: 100,

@@ -56,8 +56,12 @@ class ProductContainer extends ConsumerWidget {
                             .getSavedList
                             .contains(list)) {
                           ref.read(homeScreenProvider).addToList(list!);
+                          var snackBar = SnackBar(content: Text('${list?.productName} added to favorites successfully'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         } else {
                           ref.read(homeScreenProvider).removeFromList(list!);
+                          var snackBar = SnackBar(content: Text('${list?.productName} removed from the favorites successfully'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
                       },
                       icon: ref

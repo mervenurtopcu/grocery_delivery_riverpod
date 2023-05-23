@@ -16,6 +16,7 @@ class ProductModel {
   final String categoryImage;
   final double discountRate;
 
+
   ProductModel(
       this.productId,
       this.productName,
@@ -63,4 +64,11 @@ class Profile {
 
   final String listTitle;
 
+}
+
+class ChartData{
+  ChartData(this.xData, this.yData, this.text);
+  final String xData;
+  final num yData;
+  final String text;
 }
