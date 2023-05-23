@@ -6,7 +6,6 @@ import '../../product/widget/index.dart';
 import '../../product/model/index.dart';
 import '../../product/constants/index.dart';
 import '../../product/enums/index.dart';
-import '../search_view/search_delegate.dart';
 
 class CategoryScreen extends ConsumerStatefulWidget {
   const CategoryScreen({

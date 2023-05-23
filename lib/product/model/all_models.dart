@@ -1,22 +1,6 @@
-// Model of product
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+
 class ProductModel {
-  final int productId;
-  final String productName;
-  final String productDescription;
-  final String? productAmount;
-  final String? productPriceWithDiscount;
-  final String productPrice;
-  final double productRate;
-  final String productImage;
-  final int categoryId;
-  final String categoryName;
-  final String categoryImage;
-  final double discountRate;
-
-
   ProductModel(
       this.productId,
       this.productName,
@@ -31,6 +15,18 @@ class ProductModel {
       {this.productAmount,
       this.productPriceWithDiscount});
 
+  final int productId;
+  final String productName;
+  final String productDescription;
+  final String? productAmount;
+  final String? productPriceWithDiscount;
+  final String productPrice;
+  final double productRate;
+  final String productImage;
+  final int categoryId;
+  final String categoryName;
+  final String categoryImage;
+  final double discountRate;
 }
 
 //category model
@@ -55,19 +51,22 @@ class DiscountModel {
 }
 
 class Profile {
-  Profile( {
-  required this.index,required this.icon,required this.listTitle,required this.color
-});
+  Profile(
+      {required this.index,
+      required this.icon,
+      required this.listTitle,
+      required this.color});
+
   final int index;
   final Icon icon;
   final Color color;
 
   final String listTitle;
-
 }
 
-class ChartData{
+class ChartData {
   ChartData(this.xData, this.yData, this.text);
+
   final String xData;
   final num yData;
   final String text;

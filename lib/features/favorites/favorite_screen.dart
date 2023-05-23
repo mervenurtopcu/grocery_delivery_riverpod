@@ -30,21 +30,22 @@ class _HelpScreenState extends ConsumerState<FavoriteScreen> {
             ),
         centerTitle: true,
       ),
-      body:  savedList.isEmpty ? const ShoppingNow() : Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 5.0,
-              mainAxisSpacing: 25.0,
+      body: savedList.isEmpty
+          ? const ShoppingNow()
+          : Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 5.0,
+                    mainAxisSpacing: 25.0,
+                  ),
+                  itemCount: savedList.length,
+                  itemBuilder: (_, index) {
+                    final list = savedList[index];
+                    return ProductContainer(list: list);
+                  }),
             ),
-            itemCount: savedList.length,
-            itemBuilder: (_, index) {
-              final list = savedList[index];
-              return ProductContainer(list: list);
-            }),
-      ),
     );
   }
 }
-

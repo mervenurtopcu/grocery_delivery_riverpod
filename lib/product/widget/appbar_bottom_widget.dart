@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grocerydelivery/product/constants/index.dart';
 import '../../features/search_view/search_delegate.dart';
-import '../constants/color_constants.dart';
-import 'appbar_search_textfield.dart';
 
 PreferredSize appbarBottomWidget(BuildContext context) {
   return PreferredSize(
@@ -11,38 +10,27 @@ PreferredSize appbarBottomWidget(BuildContext context) {
         padding: const EdgeInsets.only(left: 10.0, right: 10.0),
         child: Container(
           margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
-          child:  Row(
+          child: Row(
             children: [
-              Text("What are you looking for? ", style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: ColorConstants.white,
-                  ),),
+              Text(
+                StringConstants.appbarBottomText,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: ColorConstants.white,
+                    ),
+              ),
               const Spacer(),
               IconButton(
                 onPressed: () {
-                  // method to show the search bar
                   showSearch(
-                      context: context,
-                      // delegate to customize the search bar
-                      delegate: CustomSearchDelegate()
-                  );
+                      context: context, delegate: CustomSearchDelegate());
                 },
-                icon: const Icon(Icons.search, color: ColorConstants.white,),
+                icon: const Icon(
+                  Icons.search,
+                  color: ColorConstants.white,
+                ),
               ),
             ],
           ),
-
-
-          // IconButton(
-          //   onPressed: () {
-          //     // method to show the search bar
-          //     showSearch(
-          //         context: context,
-          //         // delegate to customize the search bar
-          //         delegate: CustomSearchDelegate()
-          //     );
-          //   },
-          //   icon: const Icon(Icons.search),
-          // ),
         ),
       ),
     ),

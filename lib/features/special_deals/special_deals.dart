@@ -27,17 +27,29 @@ class _SpecialDealsState extends ConsumerState<SpecialDeals> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Spacer(flex: 1,),
+          const Spacer(
+            flex: 1,
+          ),
           Expanded(
             flex: 15,
-            child: _DiscountCard(list: twentyDiscountList,discountRate: '20', ),
+            child: _DiscountCard(
+              list: twentyDiscountList,
+              discountRate: '20',
+            ),
           ),
-          const Spacer(flex: 1,),
+          const Spacer(
+            flex: 1,
+          ),
           Expanded(
             flex: 15,
-            child: _DiscountCard(list: fiftyDiscountList,discountRate: '50', ),
+            child: _DiscountCard(
+              list: fiftyDiscountList,
+              discountRate: '50',
+            ),
           ),
-          const Spacer(flex: 1,),
+          const Spacer(
+            flex: 1,
+          ),
         ],
       ),
     );
@@ -66,14 +78,12 @@ class _DiscountCard extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Text(
                 'Products with $discountRate% discount (${list.length})',
-                style:
-                    Theme.of(context).textTheme.titleMedium?.copyWith()),
+                style: Theme.of(context).textTheme.titleMedium?.copyWith()),
           ),
           Expanded(
             child: ListView.separated(
               itemBuilder: (context, index) {
-                return ProductContainer(
-                    list: list[index]);
+                return ProductContainer(list: list[index]);
               },
               separatorBuilder: (context, index) => const SizedBox(
                 width: 20,

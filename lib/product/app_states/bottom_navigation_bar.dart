@@ -31,7 +31,11 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
     var navIndex = ref.watch(navProvider);
     return Scaffold(
       body: Center(
-        child:navIndex.isLoading ?const CircularProgressIndicator(color: ColorConstants.doveGray,): _widgetOptions[navIndex.index],
+        child: navIndex.isLoading
+            ? const CircularProgressIndicator(
+                color: ColorConstants.doveGray,
+              )
+            : _widgetOptions[navIndex.index],
       ),
       bottomNavigationBar: SizedBox(
         height: 100,
@@ -47,40 +51,22 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
                 onTap: (index) {
                   ref.read(navProvider.notifier).updateIndex(index);
                 },
-                items:  [
+                items: [
                   const BottomNavigationBarItem(
                       icon: Icon(Icons.home), label: 'Home'),
                   const BottomNavigationBarItem(
-                    icon: Icon(Icons.category), label: 'Category',),
+                    icon: Icon(Icons.category),
+                    label: 'Category',
+                  ),
                   const BottomNavigationBarItem(
                       icon: Icon(Icons.favorite_outlined), label: 'Favorite'),
-                  ref.watch(cartScreenProvider).getCartList.isNotEmpty ? BottomNavigationBarItem(
-                      icon: Stack(
-                        children: [
-                          Icon(Icons.shopping_cart),
-                          Positioned(
-                              top: 1.0,
-                              right: 1.0,
-                              child: Stack(
-                            children: [
-                              Container(
-                                height: 15.0,
-                                width: 15.0,
-                                decoration: const BoxDecoration(
-                                  color: ColorConstants.orange,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Center(
-                                  child: Text(ref.watch(cartScreenProvider).getCartList.length.toString(),style: Theme.of(context).textTheme.bodySmall?.copyWith(color: ColorConstants.white),),
-                                ),
-                              ),
-                            ],
-                          )),
-                        ],
-                      ),
-                    label: 'Cart',
-                  ): const BottomNavigationBarItem(
-                      icon: Icon(Icons.shopping_cart), label: 'Cart'),
+                  ref.watch(cartScreenProvider).getCartList.isNotEmpty
+                      ? BottomNavigationBarItem(
+                          icon: _cartItem(context),
+                          label: 'Cart',
+                        )
+                      : const BottomNavigationBarItem(
+                          icon: Icon(Icons.shopping_cart), label: 'Cart'),
                   const BottomNavigationBarItem(
                       icon: Icon(Icons.person), label: 'Profile'),
                 ],
@@ -92,6 +78,42 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
           ],
         ),
       ),
+    );
+  }
+
+  Stack _cartItem(BuildContext context) {
+    return Stack(
+      children: [
+        const Icon(Icons.shopping_cart),
+        Positioned(
+            top: 1.0,
+            right: 1.0,
+            child: Stack(
+              children: [
+                Container(
+                  height: 15.0,
+                  width: 15.0,
+                  decoration: const BoxDecoration(
+                    color: ColorConstants.orange,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Text(
+                      ref
+                          .watch(cartScreenProvider)
+                          .getCartList
+                          .length
+                          .toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall
+                          ?.copyWith(color: ColorConstants.white),
+                    ),
+                  ),
+                ),
+              ],
+            )),
+      ],
     );
   }
 }

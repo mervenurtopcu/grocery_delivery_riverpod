@@ -29,13 +29,40 @@ class StringConstants {
 
   static const String favoriteAppbar = "Your Favorites";
 
+  static const String appbarBottomText = "What are you looking for? ";
+  static const String addCartSnackBar = "added to cart successfully";
+  static const String addSavedListSnackBar = "added to favorites successfully";
+  static const String removeSavedListSnackBar =
+      "removed to favorites successfully";
   static const String cartAppBar = "My Cart";
-
+  static const String addChart = 'Add to Cart';
   static const String cartEmpty = "Your Cart is Empty";
-  static const String cartEmptyDescription = "Looks like you haven't added anything to your cart yet. Let's change that!";
+  static const String cartEmptyDescription =
+      "Looks like you haven't added anything to your cart yet. Let's change that!";
+
+  static const String cartAlertTitle = 'Are you sure?';
+  static const String cartAlertDescr =
+      'Do you want to remove all items from cart?';
+  static const String cartAlertNo = 'No';
+  static const String cartAlertYes = 'Yes';
+  static const String cartTotal = 'Total';
+  static const String cartCheckout = 'Checkout';
 
   static const String catAppBar = "Categories";
 
+  static const String chartTitle = 'Nutritional Values';
+  static const String chartProtein = 'Protein';
+  static const String chartProteinPercentage = '20%';
+  static const String chartFat = 'Fat';
+  static const String chartFatPercentage = '5%';
+  static const String chartCarbonhydrate = 'Carbonhydrate';
+  static const String chartCarbonhydratePercentage = '65%';
+  static const String chartLeaf = 'Leaf';
+  static const String chartLeafPercentage = '15%';
+  static const String chartSugar = 'Sugar';
+  static const String chartSugarPercentage = '12%';
+
+  //caterory Names
   static const String catVegetables = "Vegetables";
   static const String catFruits = "Fruits";
   static const String catMeat = "Meat";
@@ -49,6 +76,8 @@ class StringConstants {
   static const String catPasta = "Pastas";
   static const String catCleaning = "Cleaning";
 
+  static const String productNotFound = 'No Product Found';
+
   static const String productDetail =
       "A product needs to be relevant: the users must have an immediate use for it. A product needs to be functionally able to do what it is supposed to, and do it with a good quality.";
 
@@ -57,10 +86,7 @@ class StringConstants {
   static const String profileYourActivity = "Your Activity";
   static const String profileSettings = "Settings";
   static const String profileRewards = "Rewards";
-  static const String profileQrCode= "QR Code";
+  static const String profileQrCode = "QR Code";
   static const String profileNotification = "Notifications";
   static const String profileLogOut = "Log Out";
-
-
-
 }

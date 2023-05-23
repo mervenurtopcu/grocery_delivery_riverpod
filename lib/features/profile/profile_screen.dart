@@ -62,26 +62,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                     height: MediaQuery.of(context).size.width * 0.01,
                   ),
                   Expanded(
-                    child: ListView.separated(
-                      itemBuilder: (context, index) {
-                        return Card(
-                          color: ColorConstants.white,
-                          margin: const EdgeInsets.all(8),
-                          elevation: 1,
-                          child: ListTile(
-                            title: Text(profileList[index].listTitle),
-                            leading: profileList[index].icon,
-                            trailing: const Icon(Icons.arrow_forward_ios),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return const SizedBox(
-                          height: 10,
-                        );
-                      },
-                      itemCount: profileList.length,
-                    ),
+                    child: _profileListView(),
                   ),
                 ],
               ),
@@ -89,6 +70,29 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           )
         ],
       ),
+    );
+  }
+
+  ListView _profileListView() {
+    return ListView.separated(
+      itemBuilder: (context, index) {
+        return Card(
+          color: ColorConstants.white,
+          margin: const EdgeInsets.all(8),
+          elevation: 1,
+          child: ListTile(
+            title: Text(profileList[index].listTitle),
+            leading: profileList[index].icon,
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+        );
+      },
+      separatorBuilder: (context, index) {
+        return const SizedBox(
+          height: 10,
+        );
+      },
+      itemCount: profileList.length,
     );
   }
 }

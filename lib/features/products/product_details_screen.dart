@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:grocerydelivery/features/cart/cart_screen_provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import '../../product/app_states/nav_provider.dart';
-import '../../product/widget/index.dart';
 import '../../product/model/index.dart';
 import '../../product/constants/index.dart';
 import '../../product/enums/index.dart';
@@ -56,44 +55,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
-                  child: Column(
-                    children: [
-                      Text(
-                        widget.item!.productName,
-                        style:
-                            Theme.of(context).textTheme.displaySmall?.copyWith(
-                                  color: ColorConstants.black,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                      ),
-                      Text(
-                        widget.item!.categoryName,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: ColorConstants.black,
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
-                      RatingBarIndicator(
-                        rating: widget.item!.productRate,
-                        unratedColor: ColorConstants.offGreen,
-                        itemCount: 5,
-                        itemSize: 20,
-                        itemBuilder: (context, _) => const Icon(
-                          Icons.star,
-                          color: ColorConstants.mountainMeadow,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 50.0),
-                        child: FittedBox(
-                          fit: BoxFit.fill,
-                          child: Image.asset(
-                            widget.item!.productImage,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  child: _productDetails(context),
                 ),
                 Text(
                   StringConstants.productDetailTitle,
@@ -118,53 +80,7 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
-                SfCircularChart(
-                  backgroundColor: ColorConstants.offGreen,
-                  borderWidth: 1,
-                  borderColor: ColorConstants.mountainMeadow,
-                  title: ChartTitle(
-                    text: 'Nutritional Values',
-                    textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: ColorConstants.black,
-                        ),
-                  ),
-                  legend: Legend(
-                    isVisible: true,
-                    overflowMode: LegendItemOverflowMode.scroll,
-                    textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                          color: ColorConstants.black,
-                        ),
-                  ),
-                  series: <CircularSeries>[
-                    DoughnutSeries<ChartData, String>(
-                      dataSource: <ChartData>[
-                        ChartData('Protein', 0.2, '20%'),
-                        ChartData('Fat', 0.05, '5%'),
-                        ChartData('Carbonhydrate', 0.65, '65%'),
-                        ChartData('Leaf', 0.1, '15%'),
-                        ChartData('Sugar', 0.1, '10%'),
-                      ],
-                      xValueMapper: (ChartData data, _) => data.xData,
-                      yValueMapper: (ChartData data, _) => data.yData,
-                      dataLabelMapper: (ChartData data, _) => data.text,
-                      dataLabelSettings: DataLabelSettings(
-                        isVisible: true,
-                        textStyle: Theme.of(context)
-                            .textTheme
-                            .bodyLarge!
-                            .copyWith(color: ColorConstants.black),
-                      ),
-                      enableTooltip: true,
-                      radius: '100%',
-                      innerRadius: '60%',
-                      explode: true,
-                      explodeIndex: 0,
-                      explodeOffset: '10%',
-                      groupMode: CircularChartGroupMode.point,
-                      pointRadiusMapper: (ChartData data, _) => data.text,
-                    )
-                  ],
-                )
+                _buildSfCircularChart(context)
               ],
             ),
           ),
@@ -173,6 +89,101 @@ class _ProductDetailsState extends ConsumerState<ProductDetails> {
           widget: widget,
           ref: ref,
         ));
+  }
+
+  Column _productDetails(BuildContext context) {
+    return Column(
+      children: [
+        Text(
+          widget.item!.productName,
+          style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                color: ColorConstants.black,
+                fontWeight: FontWeight.w500,
+              ),
+        ),
+        Text(
+          widget.item!.categoryName,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                color: ColorConstants.black,
+                fontWeight: FontWeight.w500,
+              ),
+        ),
+        RatingBarIndicator(
+          rating: widget.item!.productRate,
+          unratedColor: ColorConstants.offGreen,
+          itemCount: 5,
+          itemSize: 20,
+          itemBuilder: (context, _) => const Icon(
+            Icons.star,
+            color: ColorConstants.mountainMeadow,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 50.0),
+          child: FittedBox(
+            fit: BoxFit.fill,
+            child: Image.asset(
+              widget.item!.productImage,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  SfCircularChart _buildSfCircularChart(BuildContext context) {
+    return SfCircularChart(
+      backgroundColor: ColorConstants.offGreen,
+      borderWidth: 1,
+      borderColor: ColorConstants.mountainMeadow,
+      title: ChartTitle(
+        text: StringConstants.chartTitle,
+        textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+              color: ColorConstants.black,
+            ),
+      ),
+      legend: Legend(
+        isVisible: true,
+        overflowMode: LegendItemOverflowMode.scroll,
+        textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
+              color: ColorConstants.black,
+            ),
+      ),
+      series: <CircularSeries>[
+        DoughnutSeries<ChartData, String>(
+          dataSource: <ChartData>[
+            ChartData(StringConstants.chartProtein, 0.2,
+                StringConstants.chartProteinPercentage),
+            ChartData(StringConstants.chartFat, 0.05,
+                StringConstants.chartFatPercentage),
+            ChartData(StringConstants.chartCarbonhydrate, 0.65,
+                StringConstants.chartCarbonhydratePercentage),
+            ChartData(StringConstants.chartLeaf, 0.1,
+                StringConstants.chartLeafPercentage),
+            ChartData(StringConstants.chartSugar, 0.1,
+                StringConstants.chartSugarPercentage),
+          ],
+          xValueMapper: (ChartData data, _) => data.xData,
+          yValueMapper: (ChartData data, _) => data.yData,
+          dataLabelMapper: (ChartData data, _) => data.text,
+          dataLabelSettings: DataLabelSettings(
+            isVisible: true,
+            textStyle: Theme.of(context)
+                .textTheme
+                .bodyLarge!
+                .copyWith(color: ColorConstants.black),
+          ),
+          enableTooltip: true,
+          radius: '100%',
+          innerRadius: '60%',
+          explode: true,
+          explodeIndex: 0,
+          explodeOffset: '10%',
+          groupMode: CircularChartGroupMode.point,
+          pointRadiusMapper: (ChartData data, _) => data.text,
+        )
+      ],
+    );
   }
 }
 
@@ -191,7 +202,6 @@ class _BottomNavBar extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.1,
       color: Colors.transparent,
       child: Row(
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -231,7 +241,7 @@ class _BottomNavBar extends StatelessWidget {
                           color: ColorConstants.mountainMeadow,
                         ),
                   )
-                : Text(''),
+                : const Text(''),
           ),
           const Spacer(),
           Padding(
@@ -241,7 +251,7 @@ class _BottomNavBar extends StatelessWidget {
                 ref.read(cartScreenProvider).addToList(widget.item);
                 var snackBar = SnackBar(
                     content: Text(
-                        '${widget.item?.productName} added to cart successfully'));
+                        '${widget.item?.productName} ${StringConstants.addCartSnackBar}'));
                 ScaffoldMessenger.of(context).showSnackBar(snackBar);
               },
               icon: const Icon(
@@ -257,7 +267,7 @@ class _BottomNavBar extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               ),
               label: Text(
-                'Add to Cart',
+                StringConstants.addChart,
                 style: Theme.of(context)
                     .textTheme
                     .bodyLarge!

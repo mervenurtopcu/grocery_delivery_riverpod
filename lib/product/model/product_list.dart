@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'all_models.dart';
 import '../../product/enums/index.dart';
 import '../../product/constants/index.dart';
@@ -7,28 +6,34 @@ import '../../product/constants/index.dart';
 // All products
 final List<ProductModel> products = [
   ProductModel(0, 'Apple', StringConstants.productDetail, '9.99', 3.5,
-      ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 50, productAmount: '1 Kg',productPriceWithDiscount: newPrice(9.99, 50.0)),
-
+      ProductImages.apple.toPng, 1, categoryNames[1], categoryImage[1], 50,
+      productAmount: '1 Kg', productPriceWithDiscount: newPrice(9.99, 50.0)),
   ProductModel(1, 'Bananas', StringConstants.productDetail, '17.99', 4.5,
       ProductImages.bananas.toPng, 1, categoryNames[1], categoryImage[1], 20,
-      productAmount: '1 Kg',productPriceWithDiscount: newPrice(17.99, 20.0)),
-
+      productAmount: '1 Kg', productPriceWithDiscount: newPrice(17.99, 20.0)),
   ProductModel(2, 'Bread', StringConstants.productDetail, '5.00', 3.5,
       ProductImages.bread.toPng, 3, categoryNames[3], categoryImage[3], 0),
-
   ProductModel(3, 'Coffee', StringConstants.productDetail, '49.99', 4.0,
-      ProductImages.coffee.toPng, 2, categoryNames[2], categoryImage[2], 50,productPriceWithDiscount: newPrice(49.99, 50.0)),
-
+      ProductImages.coffee.toPng, 2, categoryNames[2], categoryImage[2], 50,
+      productPriceWithDiscount: newPrice(49.99, 50.0)),
   ProductModel(4, 'Oranges', StringConstants.productDetail, '9.99', 4.0,
-      ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 50, productAmount: '1 Kg',productPriceWithDiscount: newPrice(9.99, 50.0)),
-
+      ProductImages.orange.toPng, 1, categoryNames[1], categoryImage[1], 50,
+      productAmount: '1 Kg', productPriceWithDiscount: newPrice(9.99, 50.0)),
   ProductModel(
-      5, 'Strawberries', StringConstants.productDetail, '24.99', 3.5,
-      ProductImages.strawberries.toPng, 1, categoryNames[1], categoryImage[1], 20, productAmount: '1 Kg',productPriceWithDiscount: newPrice(24.99, 20.0)),
-
+      5,
+      'Strawberries',
+      StringConstants.productDetail,
+      '24.99',
+      3.5,
+      ProductImages.strawberries.toPng,
+      1,
+      categoryNames[1],
+      categoryImage[1],
+      20,
+      productAmount: '1 Kg',
+      productPriceWithDiscount: newPrice(24.99, 20.0)),
   ProductModel(6, 'Tide Detergent', StringConstants.productDetail, '65.99', 5.0,
       ProductImages.tide.toPng, 9, categoryNames[9], categoryImage[9], 0),
-
   ProductModel(7, 'Watermelon', StringConstants.productDetail, '32.00', 4.5,
       ProductImages.watermelon.toPng, 1, categoryNames[1], categoryImage[1], 20,
       productAmount: '3 Kg', productPriceWithDiscount: newPrice(32.00, 20.0)),
@@ -71,7 +76,7 @@ final List<ProductModel> twentyDiscountList =
 final List<ProductModel> fiftyDiscountList =
     products.where((element) => element.discountRate == 50).toList();
 
-//All categorie names
+//All category names
 final List<String> categoryNames = [
   StringConstants.catVegetables,
   StringConstants.catFruits,
@@ -85,7 +90,7 @@ final List<String> categoryNames = [
   StringConstants.catCleaning
 ];
 
-//All categorie images path
+//All category image paths
 final List<String> categoryImage = [
   CategoriesImages.vegetables.toPng,
   CategoriesImages.fruits.toPng,
@@ -128,15 +133,40 @@ final discountLists = List<DiscountModel>.generate(2, (index) {
   }
 });
 
-final profileList =[
-  Profile(index: 0, listTitle: StringConstants.profilePersonalInfo, icon: const Icon(Icons.person),color: Colors.deepPurpleAccent),
-  Profile(index: 1, listTitle: StringConstants.profileYourActivity, icon: const Icon(Icons.history),color: Colors.orangeAccent),
-  Profile(index: 2, listTitle: StringConstants.profileSettings, icon: const Icon(Icons.settings),color: Colors.pinkAccent),
-  Profile(index: 3, listTitle: StringConstants.profileRewards, icon: const Icon(Icons.card_giftcard),color: Colors.greenAccent),
-  Profile(index: 4, listTitle: StringConstants.profileQrCode, icon: const Icon(Icons.qr_code),color: Colors.lightBlueAccent),
-  Profile(index: 5, listTitle: StringConstants.profileNotification, icon: const Icon(Icons.notifications),color: Colors.deepOrangeAccent),
-  Profile(index: 6, listTitle: StringConstants.profileLogOut, icon: const Icon(Icons.logout),color: Colors.purpleAccent),
-
+final profileList = [
+  Profile(
+      index: 0,
+      listTitle: StringConstants.profilePersonalInfo,
+      icon: const Icon(Icons.person),
+      color: Colors.deepPurpleAccent),
+  Profile(
+      index: 1,
+      listTitle: StringConstants.profileYourActivity,
+      icon: const Icon(Icons.history),
+      color: Colors.orangeAccent),
+  Profile(
+      index: 2,
+      listTitle: StringConstants.profileSettings,
+      icon: const Icon(Icons.settings),
+      color: Colors.pinkAccent),
+  Profile(
+      index: 3,
+      listTitle: StringConstants.profileRewards,
+      icon: const Icon(Icons.card_giftcard),
+      color: Colors.greenAccent),
+  Profile(
+      index: 4,
+      listTitle: StringConstants.profileQrCode,
+      icon: const Icon(Icons.qr_code),
+      color: Colors.lightBlueAccent),
+  Profile(
+      index: 5,
+      listTitle: StringConstants.profileNotification,
+      icon: const Icon(Icons.notifications),
+      color: Colors.deepOrangeAccent),
+  Profile(
+      index: 6,
+      listTitle: StringConstants.profileLogOut,
+      icon: const Icon(Icons.logout),
+      color: Colors.purpleAccent),
 ];
-
-
