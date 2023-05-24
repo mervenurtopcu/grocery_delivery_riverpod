@@ -31,9 +31,9 @@ class StringConstants {
 
   static const String appbarBottomText = "What are you looking for? ";
   static const String addCartSnackBar = "added to cart successfully";
-  static const String addSavedListSnackBar = "added to favorites successfully";
+  static const String addSavedListSnackBar = " added to favorites successfully";
   static const String removeSavedListSnackBar =
-      "removed to favorites successfully";
+      " removed to favorites successfully";
   static const String cartAppBar = "My Cart";
   static const String addChart = 'Add to Cart';
   static const String cartEmpty = "Your Cart is Empty";
@@ -56,7 +56,7 @@ class StringConstants {
   static const String chartFat = 'Fat';
   static const String chartFatPercentage = '5%';
   static const String chartCarbonhydrate = 'Carbonhydrate';
-  static const String chartCarbonhydratePercentage = '65%';
+  static const String chartCarbonhydratePercentage = '25%';
   static const String chartLeaf = 'Leaf';
   static const String chartLeafPercentage = '15%';
   static const String chartSugar = 'Sugar';

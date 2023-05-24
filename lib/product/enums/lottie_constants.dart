@@ -1,6 +1,7 @@
 enum LottieItems {
   shoppingNow,
   emptyCart,
+  loading,
 }
 
 extension LottieExtension on LottieItems {
@@ -10,6 +11,8 @@ extension LottieExtension on LottieItems {
         return 'lottie_shopping_now';
       case LottieItems.emptyCart:
         return 'lottie_empty_cart';
+      case LottieItems.loading:
+        return 'lottie_loading';
     }
   }
 

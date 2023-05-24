@@ -6,7 +6,9 @@ import 'package:grocerydelivery/features/favorites/favorite_screen.dart';
 import 'package:grocerydelivery/features/home/home_screen.dart';
 import 'package:grocerydelivery/features/profile/profile_screen.dart';
 import 'package:grocerydelivery/product/constants/color_constants.dart';
+import 'package:lottie/lottie.dart';
 import '../../features/cart/cart_screen.dart';
+import '../enums/lottie_constants.dart';
 import 'nav_provider.dart';
 
 class BottomNavBar extends ConsumerStatefulWidget {
@@ -32,8 +34,10 @@ class _BottomNavBarState extends ConsumerState<BottomNavBar> {
     return Scaffold(
       body: Center(
         child: navIndex.isLoading
-            ? const CircularProgressIndicator(
-                color: ColorConstants.doveGray,
+            ? Lottie.asset(
+                LottieItems.loading.lottiePath,
+                height: 250,
+                width: 250,
               )
             : _widgetOptions[navIndex.index],
       ),

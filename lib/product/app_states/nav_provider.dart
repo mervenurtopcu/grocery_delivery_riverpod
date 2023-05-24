@@ -6,7 +6,7 @@ class NavProvider extends StateNotifier<NavStates> {
 
   void updateIndex(int index) {
     state = state.copyWith(index: index, isLoading: true);
-    Future.delayed(const Duration(milliseconds: 500))
+    Future.delayed(const Duration(seconds: 1))
         .then((value) => state = state.copyWith(isLoading: false));
   }
 }
